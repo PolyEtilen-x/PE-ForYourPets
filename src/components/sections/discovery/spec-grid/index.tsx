@@ -81,13 +81,16 @@ export default function SpecGrid() {
 
   // Update line calculations on window resize, tab updates, or scrolls
   useEffect(() => {
-    updateLines();
+    // Run inside animation frame to avoid synchronous setState cascading render warning
+    const rId = requestAnimationFrame(updateLines);
+
     window.addEventListener('resize', updateLines);
     window.addEventListener('scroll', updateLines, { passive: true });
     // Slight delay to ensure elements are fully rendered/laid out
     const timer = setTimeout(updateLines, 100);
 
     return () => {
+      cancelAnimationFrame(rId);
       window.removeEventListener('resize', updateLines);
       window.removeEventListener('scroll', updateLines);
       clearTimeout(timer);

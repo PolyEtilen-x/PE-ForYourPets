@@ -12,7 +12,7 @@ export default function HeroSection() {
     <section className={styles.hero}>
       {/* Full-bleed Optimized Next/Image */}
       <Image
-        src="/images/hero-bg.png"
+        src="/images/hero-bg.webp"
         alt="A cat resting peacefully near a warm window"
         fill
         priority
