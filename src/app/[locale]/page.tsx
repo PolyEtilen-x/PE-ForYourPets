@@ -1,14 +1,17 @@
 import React from 'react';
-import { setRequestLocale } from 'next-intl/server';
-import { getTranslations } from 'next-intl/server';
+import dynamic from 'next/dynamic';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import NavBar from '@/components/sections/navbar';
 import HeroSection from '@/components/sections/hero';
 import TensionSection from '@/components/sections/tension';
 import RevealSection from '@/components/sections/reveal';
 import DiscoverySection from '@/components/sections/discovery';
-import ResolutionSection from '@/components/sections/resolution';
 import FooterSection from '@/components/sections/footer';
 import ChatbotBubble from '@/components/sections/chatbot';
+
+const ResolutionSection = dynamic(() => import('@/components/sections/resolution'), {
+  loading: () => <div style={{ minHeight: '350px', background: 'var(--bg-section)' }} />,
+});
 
 interface HomeProps {
   params: Promise<{ locale: string }>;

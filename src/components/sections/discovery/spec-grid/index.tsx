@@ -79,20 +79,25 @@ export default function SpecGrid() {
     setLines(newLines);
   }, [activeCategory]);
 
-  // Update line calculations on window resize, tab updates, or scrolls
+  // Update line calculations on window resize and mount
   useEffect(() => {
+    let resizeFrameId: number;
+    const handleResize = () => {
+      cancelAnimationFrame(resizeFrameId);
+      resizeFrameId = requestAnimationFrame(updateLines);
+    };
+
     // Run inside animation frame to avoid synchronous setState cascading render warning
     const rId = requestAnimationFrame(updateLines);
 
-    window.addEventListener('resize', updateLines);
-    window.addEventListener('scroll', updateLines, { passive: true });
+    window.addEventListener('resize', handleResize);
     // Slight delay to ensure elements are fully rendered/laid out
     const timer = setTimeout(updateLines, 100);
 
     return () => {
       cancelAnimationFrame(rId);
-      window.removeEventListener('resize', updateLines);
-      window.removeEventListener('scroll', updateLines);
+      cancelAnimationFrame(resizeFrameId);
+      window.removeEventListener('resize', handleResize);
       clearTimeout(timer);
     };
   }, [updateLines]);
