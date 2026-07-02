@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import ScrollReveal from '@/components/ui/scroll-reveal';
 import styles from './style.module.css';
 
 const TENSION_PHOTOS = [
@@ -31,7 +32,9 @@ export default function TensionSection() {
 
   return (
     <section id="features" className={styles.section}>
-      <p className={styles.label}>{t('sectionLabel')}</p>
+      <ScrollReveal animation="slideInLeft" duration={600}>
+        <p className={styles.label}>{t('sectionLabel')}</p>
+      </ScrollReveal>
 
       <div className={styles.marqueeContainer}>
         <div className={styles.marqueeTrack}>

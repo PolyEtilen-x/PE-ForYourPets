@@ -79,6 +79,15 @@
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  /* Stagger entry: each card delays by (index * 80ms) */
+  animation: scaleIn 600ms var(--ease-cinematic, cubic-bezier(0.16, 1, 0.3, 1))
+    calc(var(--card-index, 0) * 80ms) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .productCard {
+    animation: none;
+  }
 }
 
 :global(.dark) .productCard {
@@ -150,6 +159,15 @@
 
 .favorited {
   color: #e54b4b !important;
+}
+
+/* Heart pop micro-interaction */
+.heartPopping {
+  animation: heartPop 400ms var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1)) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heartPopping { animation: none; }
 }
 
 .hoverActions {
@@ -269,7 +287,9 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, background-color 0.35s var(--ease-cinematic, cubic-bezier(0.16, 1, 0.3, 1));
+  position: relative;
+  overflow: hidden;
 }
 
 :global(.dark) .addToCartBtn {
@@ -277,8 +297,30 @@
   color: #0e1512;
 }
 
-.addToCartBtn:hover {
+.addToCartBtn:hover:not(:disabled) {
   opacity: 0.9;
+}
+
+/* Success state — turns green with spring animation */
+.addedToCart {
+  background-color: #2e7d5e !important;
+  color: #ffffff !important;
+  cursor: default;
+}
+
+:global(.dark) .addedToCart {
+  background-color: #2e7d5e !important;
+  color: #ffffff !important;
+}
+
+/* Check icon spring pop */
+.checkIcon {
+  animation: springPop 400ms var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1)) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkIcon { animation: none; }
+  .addedToCart { transition: none; }
 }
 
 /* Loader */

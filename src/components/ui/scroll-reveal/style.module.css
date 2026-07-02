@@ -1,0 +1,99 @@
+/* ── ScrollReveal Base ── */
+
+.base {
+  /* Required: start hidden for reveal to work */
+  will-change: opacity, transform;
+}
+
+/* Hidden (pre-reveal) state */
+.hidden {
+  opacity: 0;
+}
+
+/* Revealed state — element is visible */
+.revealed {
+  opacity: 1;
+}
+
+/* ── Animation Variants ──
+   Applied ONLY when in .revealed state via the compound selectors below.
+   This ensures the animation plays exactly once, from hidden → visible.
+   Each variant has its own keyframe (defined in animations.css).
+   --reveal-duration is set as inline CSS custom property from props.
+*/
+
+/* revealUp — fade + rise from below */
+.revealUp.revealed {
+  animation: revealUp var(--reveal-duration, 700ms) var(--ease-cinematic, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+.revealUp.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* revealFade — pure fade */
+.revealFade.revealed {
+  animation: revealFade var(--reveal-duration, 700ms) var(--ease-out, cubic-bezier(0.25, 1, 0.5, 1)) both;
+}
+
+.revealFade.hidden {
+  opacity: 0;
+}
+
+/* slideInLeft — slide from left */
+.slideInLeft.revealed {
+  animation: slideInLeft var(--reveal-duration, 700ms) var(--ease-cinematic, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+.slideInLeft.hidden {
+  opacity: 0;
+  transform: translateX(-32px);
+}
+
+/* slideInRight — slide from right */
+.slideInRight.revealed {
+  animation: slideInRight var(--reveal-duration, 700ms) var(--ease-cinematic, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+.slideInRight.hidden {
+  opacity: 0;
+  transform: translateX(32px);
+}
+
+/* scaleIn — scale + rise */
+.scaleIn.revealed {
+  animation: scaleIn var(--reveal-duration, 700ms) var(--ease-cinematic, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+.scaleIn.hidden {
+  opacity: 0;
+  transform: scale(0.92) translateY(20px);
+}
+
+/* springPop — elastic pop */
+.springPop.revealed {
+  animation: springPop var(--reveal-duration, 600ms) var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1)) both;
+}
+
+.springPop.hidden {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .base,
+  .hidden,
+  .revealed,
+  .revealUp.revealed,
+  .revealFade.revealed,
+  .slideInLeft.revealed,
+  .slideInRight.revealed,
+  .scaleIn.revealed,
+  .springPop.revealed {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
