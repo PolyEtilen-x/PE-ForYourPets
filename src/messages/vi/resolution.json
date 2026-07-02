@@ -1,0 +1,18 @@
+{
+  "heading": "Biết sớm. ",
+  "headingAccent": "Yêu thương lâu dài.",
+  "body": "CLEO đang trong giai đoạn ra mắt sớm. Để lại email — không spam, chỉ tin tức thật sự.",
+  "notification": {
+    "title": "CLEO · vừa xong",
+    "content": "Milo ",
+    "statusAccent": "hoạt động bình thường",
+    "contentEnd": " hôm nay — ",
+    "statusAlert": "không có dấu hiệu bất thường."
+  },
+  "form": {
+    "placeholder": "email của bạn",
+    "submit": "Nhận thông tin CLEO",
+    "successTitle": "Cảm ơn bạn!",
+    "successBody": "Chúng tôi sẽ liên hệ sớm nhất có thể."
+  }
+}

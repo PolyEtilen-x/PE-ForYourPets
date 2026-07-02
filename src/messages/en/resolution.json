@@ -1,0 +1,18 @@
+{
+  "heading": "Know early. ",
+  "headingAccent": "Love longer.",
+  "body": "CLEO is currently in early launch. Leave your email — no spam, just real updates.",
+  "notification": {
+    "title": "CLEO · just now",
+    "content": "Milo ",
+    "statusAccent": "active & normal",
+    "contentEnd": " today — ",
+    "statusAlert": "no anomalies detected."
+  },
+  "form": {
+    "placeholder": "your email",
+    "submit": "Get CLEO updates",
+    "successTitle": "Thank you!",
+    "successBody": "We'll be in touch with you shortly."
+  }
+}

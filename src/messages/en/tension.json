@@ -1,0 +1,23 @@
+{
+  "sectionLabel": "The signs they hide",
+  "cards": [
+    {
+      "statement": "Every skipped meal — did you notice?",
+      "accent": "skipped meal",
+      "sub": "Cats usually decrease food intake subtly when their body starts to feel unwell.",
+      "alt": "A fluffy cat resting near a soft lamp glow"
+    },
+    {
+      "statement": "They sit quietly — and you call it normal.",
+      "accent": "normal",
+      "sub": "Chronic stress in cats is often mistaken for just temperament.",
+      "alt": "A tabby cat sitting in dramatic shadow and light"
+    },
+    {
+      "statement": "But something is watching silently — and caring.",
+      "accent": "watching silently",
+      "sub": "CLEO detects small behavioral shifts that you might miss.",
+      "alt": "Cat silhouetted against a bright window"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "brandName": "PE - For Your Pets",
+  "cta": {
+    "submit": "Nhận thông tin PE - For Your Pets",
+    "submitting": "Đang gửi...",
+    "explore": "Khám phá ngay"
+  },
+  "errors": {
+    "generic": "Đã có lỗi xảy ra. Vui lòng thử lại sau.",
+    "invalidEmail": "Email không đúng định dạng."
+  }
+}

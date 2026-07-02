@@ -1,0 +1,11 @@
+{
+  "links": {
+    "features": "Tính năng",
+    "specs": "Thông số",
+    "order": "Đặt hàng"
+  },
+  "theme": {
+    "dark": "Tối",
+    "light": "Sáng"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "heading": "What CLEO ",
+  "headingAccent": "sees",
+  "tabs": {
+    "activity": {
+      "label": "Today's Activity",
+      "title": "Activity Level Today",
+      "unit": "/ 100",
+      "extraLabel": "Peak Activity",
+      "extraValue": "18:00 ↑"
+    },
+    "behavior": {
+      "label": "Behavior Trends",
+      "title": "Avg Meals / Day",
+      "unit": " times",
+      "extraLabel": "Avg Sleep",
+      "extraValue": "13.4h / day"
+    },
+    "report": {
+      "label": "Weekly Report",
+      "title": "This Week's Health Score",
+      "unit": "/ 100",
+      "extraLabel": "Trend",
+      "extraValue": "Improving ↑"
+    }
+  },
+  "specs": {
+    "title": "Technical Specifications",
+    "groups": [
+      {
+        "name": "Camera & AI",
+        "items": ["130° wide-angle view", "AI behavior recognition", "Automatic anomaly detection", "IR Night Vision"]
+      },
+      {
+        "name": "Connectivity",
+        "items": ["Wi-Fi 2.4 / 5 GHz", "Bluetooth 5.0 LE", "iOS & Android Companion App"]
+      },
+      {
+        "name": "Dimensions",
+        "items": ["Ø 82mm × H 95mm", "Desk placement or wall mount", "Hidden bottom USB-C cable"]
+      },
+      {
+        "name": "Battery",
+        "items": ["3200 mAh built-in battery", "~7 days / charge", "10W Qi Wireless charging"]
+      }
+    ]
+  },
+  "colors": {
+    "title": "Select your color",
+    "sub": "Three beautiful finishes — each becomes a natural part of your home.",
+    "options": {
+      "sand": "Sand Beige",
+      "sage": "Sage Green",
+      "charcoal": "Charcoal"
+    }
+  },
+  "viewer": {
+    "title": "View from every angle",
+    "sub": "Drag to rotate the product",
+    "hint": "Drag to rotate"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "sectionLabel": "Những dấu hiệu bị bỏ qua",
+  "cards": [
+    {
+      "statement": "Mỗi bữa bỏ qua — bạn có nhận ra?",
+      "accent": "bỏ qua",
+      "sub": "Mèo thường giảm ăn âm thầm khi cơ thể bắt đầu mệt mỏi.",
+      "alt": "Chú mèo xù lông nằm thư giãn bên ánh đèn ngủ ấm áp"
+    },
+    {
+      "statement": "Chúng ngồi lặng — và bạn gọi đó là bình thường.",
+      "accent": "bình thường",
+      "sub": "Căng thẳng mãn tính ở mèo thường bị nhầm với tính khí.",
+      "alt": "Chú mèo mướp ngồi tĩnh lặng trong góc sáng tối nghệ thuật"
+    },
+    {
+      "statement": "Nhưng có điều gì đó đang lặng lẽ theo dõi — và quan tâm.",
+      "accent": "lặng lẽ theo dõi",
+      "sub": "CLEO nhìn thấy những thay đổi nhỏ mà bạn không kịp chú ý.",
+      "alt": "Hình bóng mèo ngược sáng bên khung cửa sổ rực rỡ"
+    }
+  ]
+}

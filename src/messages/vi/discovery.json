@@ -1,0 +1,62 @@
+{
+  "heading": "Những gì CLEO ",
+  "headingAccent": "nhìn thấy",
+  "tabs": {
+    "activity": {
+      "label": "Hoạt động hôm nay",
+      "title": "Mức hoạt động hôm nay",
+      "unit": "/ 100",
+      "extraLabel": "Đỉnh hoạt động",
+      "extraValue": "18:00 ↑"
+    },
+    "behavior": {
+      "label": "Xu hướng hành vi",
+      "title": "Ăn trung bình / ngày",
+      "unit": " lần",
+      "extraLabel": "Ngủ trung bình",
+      "extraValue": "13.4h / ngày"
+    },
+    "report": {
+      "label": "Báo cáo sức khỏe tuần",
+      "title": "Điểm sức khỏe tuần này",
+      "unit": "/ 100",
+      "extraLabel": "Xu hướng",
+      "extraValue": "Tốt dần ↑"
+    }
+  },
+  "specs": {
+    "title": "Thông số kỹ thuật",
+    "groups": [
+      {
+        "name": "Camera & AI",
+        "items": ["Góc quan sát 130°", "Nhận dạng AI theo hành vi", "Phát hiện bất thường tự động", "Hoạt động ban đêm IR"]
+      },
+      {
+        "name": "Kết nối",
+        "items": ["Wi-Fi 2.4 / 5 GHz", "Bluetooth 5.0 LE", "App iOS & Android"]
+      },
+      {
+        "name": "Kích thước",
+        "items": ["Ø 82mm × H 95mm", "Đặt bàn hoặc gắn tường", "Cáp USB-C ẩn đáy đế"]
+      },
+      {
+        "name": "Pin",
+        "items": ["Pin tích hợp 3200 mAh", "~7 ngày / lần sạc", "Sạc không dây Qi 10W"]
+      }
+    ]
+  },
+  "colors": {
+    "title": "Chọn màu của bạn",
+    "sub": "Ba lựa chọn hoàn thiện — mỗi cái đều trở thành một phần của ngôi nhà bạn.",
+    "options": {
+      "sand": "Sand Beige",
+      "sage": "Sage Green",
+      "charcoal": "Charcoal"
+    }
+  },
+  "viewer": {
+    "title": "Xem từ mọi góc độ",
+    "sub": "Kéo để xoay sản phẩm",
+    "hint": "Kéo để xoay"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "brandName": "CLEO",
+  "cta": {
+    "submit": "Get CLEO updates",
+    "submitting": "Sending...",
+    "explore": "Explore Now"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again later.",
+    "invalidEmail": "Invalid email address format."
+  }
+}
