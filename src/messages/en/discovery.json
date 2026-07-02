@@ -42,6 +42,10 @@
       {
         "name": "Battery",
         "items": ["3200 mAh built-in battery", "~7 days / charge", "10W Qi Wireless charging"]
+      },
+      {
+        "name": "Lens & Resolution",
+        "items": ["4MP 2K Ultra-HD Resolution", "F/2.0 aperture for low-light", "Automatic WDR contrast balance"]
       }
     ]
   },
