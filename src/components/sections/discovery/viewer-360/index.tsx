@@ -6,15 +6,18 @@ import ProductCamera, { ColorKey } from '@/components/ui/product-camera';
 import { RotateCw } from 'lucide-react';
 import styles from './style.module.css';
 
-interface ProductViewer360Props {
-  colorKey: ColorKey;
-}
-
-export default function ProductViewer360({ colorKey }: ProductViewer360Props) {
+export default function ProductViewer360() {
   const t = useTranslations('discovery');
+  const [colorKey, setColorKey] = useState<ColorKey>('sage');
   const [rotation, setRotation] = useState(0);
   const dragging = useRef(false);
   const lastX = useRef(0);
+
+  const swatches: { key: ColorKey; label: string; hex: string }[] = [
+    { key: 'sand', label: t('colors.options.sand'), hex: '#C4A882' },
+    { key: 'sage', label: t('colors.options.sage'), hex: '#7A9E7E' },
+    { key: 'charcoal', label: t('colors.options.charcoal'), hex: '#5A5A62' },
+  ];
 
   const onMouseDown = useCallback((e: React.MouseEvent) => {
     dragging.current = true;
@@ -46,28 +49,52 @@ export default function ProductViewer360({ colorKey }: ProductViewer360Props) {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>{t('viewer.title')}</h2>
-      <p className={styles.subtitle}>{t('viewer.sub')}</p>
+      {/* Left Column: Title, Subtitle, and Color selection */}
+      <div className={styles.infoCol}>
+        <h2 className={styles.title}>{t('viewer.title')}</h2>
+        <p className={styles.subtitle}>{t('colors.sub')}</p>
 
-      {/* Drag Canvas */}
-      <div
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onEnd}
-        onMouseLeave={onEnd}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onEnd}
-        className={styles.viewerBox}
-      >
-        <div className={styles.cameraBox}>
-          <ProductCamera colorKey={colorKey} rotation={rotation} />
+        <div className={styles.swatches}>
+          {swatches.map((s) => (
+            <button
+              key={s.key}
+              onClick={() => setColorKey(s.key)}
+              className={styles.swatchButton}
+              aria-label={`Select color ${s.label}`}
+            >
+              <div
+                className={`${styles.swatch} ${colorKey === s.key ? styles.activeSwatch : ''}`}
+                style={{ backgroundColor: s.hex }}
+              />
+              <span className={`${styles.swatchLabel} ${colorKey === s.key ? styles.activeLabel : ''}`}>
+                {s.label}
+              </span>
+            </button>
+          ))}
         </div>
-        <div className={styles.metrics}>
-          <RotateCw size={13} className={styles.rotateIcon} />
-          <span className={styles.degree}>{deg}°</span>
+      </div>
+
+      {/* Right Column: Rotatable 360-degree Viewer card */}
+      <div className={styles.viewerCol}>
+        <div
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onMouseUp={onEnd}
+          onMouseLeave={onEnd}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onEnd}
+          className={styles.viewerBox}
+        >
+          <div className={styles.cameraBox}>
+            <ProductCamera colorKey={colorKey} rotation={rotation} />
+          </div>
+          <div className={styles.metrics}>
+            <RotateCw size={14} className={styles.rotateIcon} />
+            <span className={styles.degree}>{deg}°</span>
+          </div>
+          <p className={styles.hint}>{t('viewer.hint')}</p>
         </div>
-        <p className={styles.hint}>{t('viewer.hint')}</p>
       </div>
     </div>
   );

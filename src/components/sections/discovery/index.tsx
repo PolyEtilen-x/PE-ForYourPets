@@ -1,10 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import SpecGrid from './spec-grid';
-import ColorSelector from './color-selector';
-import { ColorKey } from '@/components/ui/product-camera';
 import styles from './style.module.css';
 
 // Lazy-load Recharts graphs and interactive viewer to keep bundle sizes optimized
@@ -19,8 +17,6 @@ const ProductViewer360 = dynamic(() => import('./viewer-360'), {
 });
 
 export default function DiscoverySection() {
-  const [colorKey, setColorKey] = useState<ColorKey>('sage');
-
   return (
     <section id="specs" className={styles.section}>
       <div className={styles.container}>
@@ -30,11 +26,8 @@ export default function DiscoverySection() {
         {/* Sub-section 2: Technical specifications details */}
         <SpecGrid />
 
-        {/* Sub-section 3: Interactive color swatches selector */}
-        <ColorSelector colorKey={colorKey} setColorKey={setColorKey} />
-
-        {/* Sub-section 4: 360 viewer */}
-        <ProductViewer360 colorKey={colorKey} />
+        {/* Sub-section 3 & 4: Integrated Color Swatches & 360 Viewer */}
+        <ProductViewer360 />
       </div>
     </section>
   );
