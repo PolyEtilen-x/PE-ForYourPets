@@ -6,8 +6,11 @@ import HeroSection from '@/components/sections/hero';
 import TensionSection from '@/components/sections/tension';
 import RevealSection from '@/components/sections/reveal';
 import DiscoverySection from '@/components/sections/discovery';
+import ShopSection from '@/components/sections/shop';
 import FooterSection from '@/components/sections/footer';
 import ChatbotBubble from '@/components/sections/chatbot';
+import CartDrawer from '@/components/ui/cart-drawer';
+import WishlistDrawer from '@/components/ui/wishlist-drawer';
 
 const ResolutionSection = dynamic(() => import('@/components/sections/resolution'), {
   loading: () => <div style={{ minHeight: '350px', background: 'var(--bg-section)' }} />,
@@ -39,10 +42,13 @@ export default async function Home({ params }: HomeProps) {
         <TensionSection />
         <RevealSection />
         <DiscoverySection />
+        <ShopSection />
         <ResolutionSection />
       </main>
       <FooterSection />
       <ChatbotBubble />
+      <CartDrawer />
+      <WishlistDrawer />
     </>
   );
 }

@@ -1,0 +1,122 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { useCartStore } from '@/stores/useCartStore';
+import { X, Plus, Minus, Trash2, ShoppingBag } from 'lucide-react';
+import styles from './style.module.css';
+
+export default function CartDrawer() {
+  const [mounted, setMounted] = useState(false);
+  const { items, isOpen, setOpen, updateQuantity, removeItem } = useCartStore();
+
+  useEffect(() => {
+    const animFrame = requestAnimationFrame(() => {
+      setMounted(true);
+    });
+    return () => cancelAnimationFrame(animFrame);
+  }, []);
+
+  // Prevent scroll when drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  if (!mounted || !isOpen) return null;
+
+  const subtotal = items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+
+  return (
+    <div className={styles.overlay} onClick={() => setOpen(false)}>
+      <div className={styles.drawer} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.header}>
+          <div className={styles.titleWrapper}>
+            <ShoppingBag size={20} className={styles.icon} />
+            <h2 className={styles.title}>Giỏ hàng</h2>
+            <span className={styles.count}>({items.length})</span>
+          </div>
+          <button className={styles.closeBtn} onClick={() => setOpen(false)} aria-label="Close cart">
+            <X size={20} />
+          </button>
+        </div>
+
+        <div className={styles.content}>
+          {items.length === 0 ? (
+            <div className={styles.emptyState}>
+              <div className={styles.emptyIconWrapper}>
+                <ShoppingBag size={48} className={styles.emptyIcon} />
+              </div>
+              <p className={styles.emptyText}>Giỏ hàng của bạn đang trống.</p>
+              <button className={styles.continueBtn} onClick={() => setOpen(false)}>
+                Tiếp tục khám phá
+              </button>
+            </div>
+          ) : (
+            <div className={styles.itemsList}>
+              {items.map((item) => (
+                <div key={item.product.id} className={styles.itemCard}>
+                  <div className={styles.imageWrapper}>
+                    <img src={item.product.image} alt={item.product.name} className={styles.image} />
+                  </div>
+                  <div className={styles.itemDetails}>
+                    <h3 className={styles.itemName}>{item.product.name}</h3>
+                    <div className={styles.priceRow}>
+                      <span className={styles.price}>${item.product.price.toFixed(2)}</span>
+                      {item.product.compareAtPrice && (
+                        <span className={styles.originalPrice}>${item.product.compareAtPrice.toFixed(2)}</span>
+                      )}
+                    </div>
+                    <div className={styles.controlRow}>
+                      <div className={styles.quantityControls}>
+                        <button
+                          className={styles.qtyBtn}
+                          onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                          disabled={item.quantity <= 1}
+                        >
+                          <Minus size={12} />
+                        </button>
+                        <span className={styles.quantity}>{item.quantity}</span>
+                        <button
+                          className={styles.qtyBtn}
+                          onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                        >
+                          <Plus size={12} />
+                        </button>
+                      </div>
+                      <button
+                        className={styles.deleteBtn}
+                        onClick={() => removeItem(item.product.id)}
+                        aria-label="Remove item"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {items.length > 0 && (
+          <div className={styles.footer}>
+            <div className={styles.totalRow}>
+              <span className={styles.totalLabel}>Tổng phụ</span>
+              <span className={styles.totalValue}>${subtotal.toFixed(2)}</span>
+            </div>
+            <p className={styles.taxNote}>Thuế và phí vận chuyển sẽ được tính khi thanh toán.</p>
+            <button className={styles.checkoutBtn} onClick={() => alert('Chức năng thanh toán đang được tích hợp!')}>
+              Thanh toán ngay
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
