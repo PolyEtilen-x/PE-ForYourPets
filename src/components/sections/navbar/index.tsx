@@ -26,8 +26,10 @@ export default function NavBar() {
     document.documentElement.classList.toggle('dark', isDark);
   }, [isDark]);
 
+  const unscrolledDark = !scrolled && !isDark ? styles.unscrolledDark : '';
+
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
+    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${unscrolledDark}`}>
       <span className={styles.logo}>PE - For Your Pets</span>
 
       <div className={`${styles.menu} ${mobileMenuOpen ? styles.mobileOpen : ''}`}>

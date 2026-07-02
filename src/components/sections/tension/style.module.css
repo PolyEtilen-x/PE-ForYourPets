@@ -33,8 +33,10 @@
   gap: 20px;
   padding: 0 20px 16px;
   overflow-x: auto;
+  width: 100%;
   scroll-snap-type: x mandatory;
-  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
 @media (min-width: 768px) {
@@ -45,7 +47,8 @@
 }
 
 .scrollContainer::-webkit-scrollbar {
-  display: none; /* Safari / Chrome */
+  display: none;
+  /* Safari / Chrome */
 }
 
 .card {
@@ -75,6 +78,9 @@
 .image {
   object-fit: cover;
   opacity: 0.88;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .imageOverlay {

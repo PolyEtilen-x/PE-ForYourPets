@@ -145,3 +145,12 @@
     margin-top: auto;
   }
 }
+
+.unscrolledDark {
+  --logo-color: var(--color-mint);
+  --text-primary: #E8F0EC;
+  --text-secondary: rgba(232, 240, 236, 0.58);
+  --text-muted: rgba(232, 240, 236, 0.46);
+  --border-color: rgba(143, 227, 192, 0.22);
+  --bg-card-hover: rgba(143, 227, 192, 0.07);
+}
