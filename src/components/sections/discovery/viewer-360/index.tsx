@@ -3,7 +3,9 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import ProductCamera, { ColorKey } from '@/components/ui/product-camera';
-import { RotateCw } from 'lucide-react';
+import { useProductQuery } from '@/queries/useProductQuery';
+import { useCartStore } from '@/stores/useCartStore';
+import { RotateCw, ShoppingCart } from 'lucide-react';
 import styles from './style.module.css';
 
 export default function ProductViewer360() {
@@ -12,6 +14,9 @@ export default function ProductViewer360() {
   const [rotation, setRotation] = useState(0);
   const dragging = useRef(false);
   const lastX = useRef(0);
+
+  const { data: cameraProduct } = useProductQuery('pe');
+  const { addItem } = useCartStore();
 
   const swatches: { key: ColorKey; label: string; hex: string }[] = [
     { key: 'sand', label: t('colors.options.sand'), hex: '#C4A882' },
@@ -95,6 +100,21 @@ export default function ProductViewer360() {
           </div>
           <p className={styles.hint}>{t('viewer.hint')}</p>
         </div>
+
+        {cameraProduct && (
+          <div className={styles.buyWrapper}>
+            <div className={styles.priceRow}>
+              <span className={styles.price}>${cameraProduct.price.toFixed(2)}</span>
+              {cameraProduct.compareAtPrice && (
+                <span className={styles.comparePrice}>${cameraProduct.compareAtPrice.toFixed(2)}</span>
+              )}
+            </div>
+            <button className={styles.addToCartBtn} onClick={() => addItem(cameraProduct)}>
+              <ShoppingCart size={16} />
+              <span>Thêm vào giỏ hàng</span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
