@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
+import Providers from './providers';
 import '@/styles/tokens.css';
 import '@/styles/globals.css';
 import '@/styles/typography.css';
@@ -33,7 +34,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     template: '%s | PE-ForYourPets',
-    default: 'CLEO - AI-Powered Cat Health Camera',
+    default: 'PE - AI-Powered Cat Health Camera',
   },
   description: 'AI camera giám sát sức khỏe thú cưng 24/7. Biết sớm, yêu thương lâu dài.',
   alternates: {
@@ -75,7 +76,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     >
       <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>
     </html>

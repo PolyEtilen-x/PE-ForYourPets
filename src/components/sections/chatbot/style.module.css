@@ -1,0 +1,32 @@
+.bubble {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 99;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-mint);
+  box-shadow: 0 0 0 3px rgba(143, 227, 192, 0.2), 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.bubble:hover {
+  background-color: #7AD4B0;
+  box-shadow: 0 0 0 7px rgba(143, 227, 192, 0.2), 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: scale(1.08);
+}
+
+.pulseLine {
+  width: 28px;
+  height: 18px;
+  color: var(--color-moss);
+  opacity: 0.9;
+}

@@ -1,0 +1,89 @@
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 24px;
+  background: var(--bg-primary);
+  transition: background-color 0.35s;
+}
+
+.radialGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 50% 42% at 50% 50%,
+    var(--accent-glow) 0%,
+    transparent 70%
+  );
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.badge {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 12px;
+  margin-bottom: 36px;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color-glow);
+  background: var(--accent-pill-bg);
+  color: var(--accent-pill-text);
+  transition: all 0.2s ease;
+}
+
+.cameraWrapper {
+  width: min(300px, 78vw);
+  aspect-ratio: 1;
+  margin-bottom: 32px;
+}
+
+.heading {
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+  font-weight: 300;
+  text-align: center;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.accent {
+  font-style: italic;
+  color: var(--accent-pill-text);
+}
+
+.bodyText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  text-align: center;
+  max-width: 380px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.pulseWrapper {
+  margin-top: 44px;
+  width: 100%;
+  max-width: 340px;
+  color: var(--accent-pill-text);
+  opacity: 0.28;
+}
+
+.pulseLine {
+  width: 100%;
+  height: 46px;
+}

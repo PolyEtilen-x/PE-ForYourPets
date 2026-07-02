@@ -1,0 +1,198 @@
+.section {
+  background: var(--bg-primary);
+  width: 100%;
+  transition: background-color 0.35s;
+}
+
+.mediaContainer {
+  position: relative;
+  min-height: 62vh;
+  width: 100%;
+  background: #1a1a14;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  opacity: 0.72;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 20%, rgba(14, 21, 18, 0.6) 100%);
+  z-index: 1;
+}
+
+.notificationCard {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(340px, 88vw);
+  background: rgba(17, 26, 20, 0.92);
+  backdrop-filter: blur(16px);
+  border-radius: 18px;
+  border: 1px solid rgba(143, 227, 192, 0.18);
+  padding: 18px 20px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.time {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 11px;
+  color: rgba(232, 240, 236, 0.4);
+}
+
+.barLines {
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+}
+
+.bar {
+  width: 3.5px;
+  border-radius: 2px;
+  transition: background-color 0.3s;
+}
+
+.cardBody {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(143, 227, 192, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar span {
+  font-family: var(--font-fraunces), serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-mint);
+}
+
+.alertContent {
+  flex: 1;
+}
+
+.alertMeta {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(232, 240, 236, 0.5);
+  margin: 0 0 5px;
+}
+
+.alertText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #E8F0EC;
+  margin: 0;
+}
+
+.mintText {
+  color: var(--color-mint);
+  font-weight: 500;
+}
+
+.orangeText {
+  color: var(--color-orange);
+}
+
+/* Copy + Form */
+.formContainer {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 72px 24px 88px;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.accent {
+  font-style: italic;
+  color: var(--color-mint);
+}
+
+.bodyText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 36px;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.inputBox {
+  flex: 1;
+  min-width: 190px;
+}
+
+.successCard {
+  border-radius: 16px;
+  padding: 18px 24px;
+  text-align: center;
+  background: rgba(143, 227, 192, 0.06);
+  border: 1px solid rgba(143, 227, 192, 0.16);
+}
+
+.successTitle {
+  font-family: var(--font-fraunces), serif;
+  font-size: 20px;
+  color: var(--color-mint);
+  margin-bottom: 6px;
+}
+
+.successSub {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+
+.submittedEmail {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 12px;
+  color: var(--text-primary);
+  opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
