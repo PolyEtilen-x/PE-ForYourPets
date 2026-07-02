@@ -70,6 +70,7 @@ export default function WishlistDrawer() {
               {items.map((item) => (
                 <div key={item.id} className={styles.itemCard}>
                   <div className={styles.imageWrapper}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={item.image} alt={item.name} className={styles.image} />
                   </div>
                   <div className={styles.itemDetails}>

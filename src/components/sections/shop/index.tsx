@@ -62,6 +62,7 @@ export default function ShopSection() {
               {products?.map((product: Product) => (
                 <div key={product.id} className={styles.productCard}>
                   <div className={styles.imageContainer}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={product.image} alt={product.name} className={styles.productImage} />
                     <button
                       className={`${styles.favoriteBtn} ${isFavorited(product.id) ? styles.favorited : ''}`}
@@ -111,6 +112,7 @@ export default function ShopSection() {
                       title={product.name}
                     >
                       <div className={styles.rvImageWrapper}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={product.image} alt={product.name} className={styles.rvImage} />
                       </div>
                       <span className={styles.rvName}>{product.name.split(' ').slice(0, 3).join(' ')}</span>
@@ -132,6 +134,7 @@ export default function ShopSection() {
             </button>
             <div className={styles.modalBody}>
               <div className={styles.modalImageWrapper}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={activeDetailsProduct.image} alt={activeDetailsProduct.name} className={styles.modalImage} />
               </div>
               <div className={styles.modalDetails}>

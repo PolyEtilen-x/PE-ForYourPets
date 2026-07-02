@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import { useCartStore } from '@/stores/useCartStore';
 import { X, Plus, Minus, Trash2, ShoppingBag } from 'lucide-react';
 import styles from './style.module.css';
@@ -10,6 +12,8 @@ export default function CartDrawer() {
   const t = useTranslations('shop');
   const [mounted, setMounted] = useState(false);
   const { items, isOpen, setOpen, updateQuantity, removeItem } = useCartStore();
+  const pathname = usePathname();
+  const locale = pathname?.split('/')[1] || 'vi';
 
   useEffect(() => {
     const animFrame = requestAnimationFrame(() => {
@@ -64,6 +68,7 @@ export default function CartDrawer() {
               {items.map((item) => (
                 <div key={item.product.id} className={styles.itemCard}>
                   <div className={styles.imageWrapper}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={item.product.image} alt={item.product.name} className={styles.image} />
                   </div>
                   <div className={styles.itemDetails}>
@@ -113,9 +118,13 @@ export default function CartDrawer() {
               <span className={styles.totalValue}>${subtotal.toFixed(2)}</span>
             </div>
             <p className={styles.taxNote}>{t('cart.taxNote')}</p>
-            <button className={styles.checkoutBtn} onClick={() => alert(t('cart.checkoutAlert'))}>
+            <Link
+              href={`/${locale}/checkout`}
+              className={styles.checkoutBtn}
+              onClick={() => setOpen(false)}
+            >
               {t('cart.checkout')}
-            </button>
+            </Link>
           </div>
         )}
       </div>

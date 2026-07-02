@@ -23,5 +23,36 @@
     "empty": "Danh sách yêu thích đang trống.",
     "continue": "Tìm sản phẩm yêu thích",
     "moveToCart": "Thêm vào giỏ"
+  },
+  "checkoutPage": {
+    "title": "Thanh toán đơn hàng",
+    "shippingTitle": "Thông tin giao hàng",
+    "fullName": "Họ và tên",
+    "fullNamePlaceholder": "Nguyễn Văn A",
+    "phone": "Số điện thoại",
+    "phonePlaceholder": "0987654321",
+    "email": "Địa chỉ Email",
+    "emailPlaceholder": "example@email.com",
+    "address": "Địa chỉ giao hàng",
+    "addressPlaceholder": "Số 123 Đường ABC, Quận XYZ, TP. HCM",
+    "paymentMethod": "Phương thức thanh toán",
+    "cod": "Thanh toán khi nhận hàng (COD)",
+    "bank": "Chuyển khoản ngân hàng (Qua mã QR)",
+    "summaryTitle": "Tóm tắt đơn hàng",
+    "shippingFee": "Phí vận chuyển",
+    "free": "Miễn phí",
+    "total": "Tổng thanh toán",
+    "placeOrder": "Xác nhận đặt hàng",
+    "placingOrder": "Đang xử lý đặt hàng...",
+    "successTitle": "Đặt hàng thành công!",
+    "successDesc": "Cảm ơn bạn đã lựa chọn PE. Đơn hàng của bạn đã được ghi nhận thành công trên hệ thống.",
+    "orderIdLabel": "Mã đơn hàng:",
+    "bankInfo": {
+      "title": "Thông tin chuyển khoản",
+      "bankName": "Ngân hàng: MB Bank",
+      "accountName": "Chủ TK: CONG TY PE TECH",
+      "accountNumber": "Số TK: 1234567890",
+      "description": "Nội dung: PE ORDER {id}"
+    }
   }
 }
