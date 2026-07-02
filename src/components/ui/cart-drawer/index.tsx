@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useCartStore } from '@/stores/useCartStore';
 import { X, Plus, Minus, Trash2, ShoppingBag } from 'lucide-react';
 import styles from './style.module.css';
 
 export default function CartDrawer() {
+  const t = useTranslations('shop');
   const [mounted, setMounted] = useState(false);
   const { items, isOpen, setOpen, updateQuantity, removeItem } = useCartStore();
 
@@ -38,7 +40,7 @@ export default function CartDrawer() {
         <div className={styles.header}>
           <div className={styles.titleWrapper}>
             <ShoppingBag size={20} className={styles.icon} />
-            <h2 className={styles.title}>Giỏ hàng</h2>
+            <h2 className={styles.title}>{t('cart.title')}</h2>
             <span className={styles.count}>({items.length})</span>
           </div>
           <button className={styles.closeBtn} onClick={() => setOpen(false)} aria-label="Close cart">
@@ -52,9 +54,9 @@ export default function CartDrawer() {
               <div className={styles.emptyIconWrapper}>
                 <ShoppingBag size={48} className={styles.emptyIcon} />
               </div>
-              <p className={styles.emptyText}>Giỏ hàng của bạn đang trống.</p>
+              <p className={styles.emptyText}>{t('cart.empty')}</p>
               <button className={styles.continueBtn} onClick={() => setOpen(false)}>
-                Tiếp tục khám phá
+                {t('cart.continue')}
               </button>
             </div>
           ) : (
@@ -107,12 +109,12 @@ export default function CartDrawer() {
         {items.length > 0 && (
           <div className={styles.footer}>
             <div className={styles.totalRow}>
-              <span className={styles.totalLabel}>Tổng phụ</span>
+              <span className={styles.totalLabel}>{t('cart.subtotal')}</span>
               <span className={styles.totalValue}>${subtotal.toFixed(2)}</span>
             </div>
-            <p className={styles.taxNote}>Thuế và phí vận chuyển sẽ được tính khi thanh toán.</p>
-            <button className={styles.checkoutBtn} onClick={() => alert('Chức năng thanh toán đang được tích hợp!')}>
-              Thanh toán ngay
+            <p className={styles.taxNote}>{t('cart.taxNote')}</p>
+            <button className={styles.checkoutBtn} onClick={() => alert(t('cart.checkoutAlert'))}>
+              {t('cart.checkout')}
             </button>
           </div>
         )}

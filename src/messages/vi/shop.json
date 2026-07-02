@@ -1,0 +1,27 @@
+{
+  "eyebrow": "Hệ sinh thái PE",
+  "title": "Cửa hàng thiết bị thú cưng",
+  "subtitle": "Trang bị giải pháp công nghệ thông minh đỉnh cao để chăm sóc và bảo vệ sức khỏe người bạn bốn chân của bạn.",
+  "loading": "Đang tải danh sách sản phẩm...",
+  "error": "Không thể tải sản phẩm. Vui lòng thử lại sau.",
+  "quickView": "Xem chi tiết",
+  "addToCart": "Thêm vào giỏ",
+  "addToCartFull": "Thêm vào giỏ hàng",
+  "recentlyViewed": "Sản phẩm đã xem gần đây",
+  "featuredSpecs": "Thông số nổi bật:",
+  "cart": {
+    "title": "Giỏ hàng",
+    "empty": "Giỏ hàng của bạn đang trống.",
+    "continue": "Tiếp tục khám phá",
+    "subtotal": "Tổng phụ",
+    "taxNote": "Thuế và phí vận chuyển sẽ được tính khi thanh toán.",
+    "checkout": "Thanh toán ngay",
+    "checkoutAlert": "Chức năng thanh toán đang được tích hợp!"
+  },
+  "wishlist": {
+    "title": "Yêu thích",
+    "empty": "Danh sách yêu thích đang trống.",
+    "continue": "Tìm sản phẩm yêu thích",
+    "moveToCart": "Thêm vào giỏ"
+  }
+}

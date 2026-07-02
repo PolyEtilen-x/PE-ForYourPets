@@ -9,7 +9,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   }
 
   // Load message files dynamically for the requested locale
-  const [common, navbar, hero, tension, reveal, discovery, resolution, footer] =
+  const [common, navbar, hero, tension, reveal, discovery, resolution, footer, shop] =
     await Promise.all([
       import(`../messages/${locale}/common.json`).then((m) => m.default),
       import(`../messages/${locale}/navbar.json`).then((m) => m.default),
@@ -19,6 +19,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       import(`../messages/${locale}/discovery.json`).then((m) => m.default),
       import(`../messages/${locale}/resolution.json`).then((m) => m.default),
       import(`../messages/${locale}/footer.json`).then((m) => m.default),
+      import(`../messages/${locale}/shop.json`).then((m) => m.default),
     ]);
 
   return {
@@ -32,6 +33,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       discovery,
       resolution,
       footer,
+      shop,
     },
   };
 });

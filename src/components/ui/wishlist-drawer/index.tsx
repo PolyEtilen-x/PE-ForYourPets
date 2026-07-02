@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useWishlistStore } from '@/stores/useWishlistStore';
 import { useCartStore } from '@/stores/useCartStore';
 import { Product } from '@/types/product';
@@ -8,6 +9,7 @@ import { X, Heart, ShoppingCart, Trash2 } from 'lucide-react';
 import styles from './style.module.css';
 
 export default function WishlistDrawer() {
+  const t = useTranslations('shop');
   const [mounted, setMounted] = useState(false);
   const { items, isOpen, setOpen, removeItem } = useWishlistStore();
   const { addItem } = useCartStore();
@@ -44,7 +46,7 @@ export default function WishlistDrawer() {
         <div className={styles.header}>
           <div className={styles.titleWrapper}>
             <Heart size={20} className={styles.icon} />
-            <h2 className={styles.title}>Yêu thích</h2>
+            <h2 className={styles.title}>{t('wishlist.title')}</h2>
             <span className={styles.count}>({items.length})</span>
           </div>
           <button className={styles.closeBtn} onClick={() => setOpen(false)} aria-label="Close wishlist">
@@ -58,9 +60,9 @@ export default function WishlistDrawer() {
               <div className={styles.emptyIconWrapper}>
                 <Heart size={48} className={styles.emptyIcon} />
               </div>
-              <p className={styles.emptyText}>Danh sách yêu thích đang trống.</p>
+              <p className={styles.emptyText}>{t('wishlist.empty')}</p>
               <button className={styles.continueBtn} onClick={() => setOpen(false)}>
-                Tìm sản phẩm yêu thích
+                {t('wishlist.continue')}
               </button>
             </div>
           ) : (
@@ -78,7 +80,7 @@ export default function WishlistDrawer() {
                     <div className={styles.actionRow}>
                       <button className={styles.moveToCartBtn} onClick={() => handleMoveToCart(item)}>
                         <ShoppingCart size={14} />
-                        Thêm vào giỏ
+                        {t('wishlist.moveToCart')}
                       </button>
                       <button
                         className={styles.deleteBtn}

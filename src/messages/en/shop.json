@@ -1,0 +1,27 @@
+{
+  "eyebrow": "PE Ecosystem",
+  "title": "Pet Device Store",
+  "subtitle": "Equip premium smart tech solutions to care for and protect your four-legged companion.",
+  "loading": "Loading product list...",
+  "error": "Could not load products. Please try again later.",
+  "quickView": "View details",
+  "addToCart": "Add to cart",
+  "addToCartFull": "Add to cart",
+  "recentlyViewed": "Recently viewed products",
+  "featuredSpecs": "Featured specs:",
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty.",
+    "continue": "Continue exploring",
+    "subtotal": "Subtotal",
+    "taxNote": "Taxes and shipping calculated at checkout.",
+    "checkout": "Checkout",
+    "checkoutAlert": "Checkout functionality is being integrated!"
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "empty": "Your wishlist is empty.",
+    "continue": "Find favorite products",
+    "moveToCart": "Add to cart"
+  }
+}

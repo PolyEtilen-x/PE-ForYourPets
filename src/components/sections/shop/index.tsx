@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { useProductQuery } from '@/queries/useProductQuery';
 import { useCartStore } from '@/stores/useCartStore';
 import { useWishlistStore } from '@/stores/useWishlistStore';
@@ -10,6 +11,7 @@ import { Heart, ShoppingCart, Eye, X, Info } from 'lucide-react';
 import styles from './style.module.css';
 
 export default function ShopSection() {
+  const t = useTranslations('shop');
   const [mounted, setMounted] = useState(false);
   const { data: products, isLoading, error } = useProductQuery();
   const { addItem } = useCartStore();
@@ -40,21 +42,19 @@ export default function ShopSection() {
     <section id="order" className={styles.shopSection}>
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <span className={styles.eyebrow}>Hệ sinh thái PE</span>
-          <h2 className={styles.title}>Cửa hàng thiết bị thú cưng</h2>
-          <p className={styles.subtitle}>
-            Trang bị giải pháp công nghệ thông minh đỉnh cao để chăm sóc và bảo vệ sức khỏe người bạn bốn chân của bạn.
-          </p>
+          <span className={styles.eyebrow}>{t('eyebrow')}</span>
+          <h2 className={styles.title}>{t('title')}</h2>
+          <p className={styles.subtitle}>{t('subtitle')}</p>
         </div>
 
         {isLoading ? (
           <div className={styles.loaderWrapper}>
             <div className={styles.loader}></div>
-            <p>Đang tải danh sách sản phẩm...</p>
+            <p>{t('loading')}</p>
           </div>
         ) : error ? (
           <div className={styles.errorWrapper}>
-            <p>Không thể tải sản phẩm. Vui lòng thử lại sau.</p>
+            <p>{t('error')}</p>
           </div>
         ) : (
           <>
@@ -73,7 +73,7 @@ export default function ShopSection() {
                     <div className={styles.hoverActions}>
                       <button className={styles.quickViewBtn} onClick={() => handleOpenDetails(product)}>
                         <Eye size={16} />
-                        <span>Xem chi tiết</span>
+                        <span>{t('quickView')}</span>
                       </button>
                     </div>
                   </div>
@@ -90,7 +90,7 @@ export default function ShopSection() {
                     <div className={styles.cardActions}>
                       <button className={styles.addToCartBtn} onClick={() => addItem(product)}>
                         <ShoppingCart size={16} />
-                        <span>Thêm vào giỏ</span>
+                        <span>{t('addToCart')}</span>
                       </button>
                     </div>
                   </div>
@@ -101,7 +101,7 @@ export default function ShopSection() {
             {/* Recently Viewed Products */}
             {recentlyViewed.length > 0 && (
               <div className={styles.recentlyViewedSection}>
-                <h3 className={styles.rvTitle}>Sản phẩm đã xem gần đây</h3>
+                <h3 className={styles.rvTitle}>{t('recentlyViewed')}</h3>
                 <div className={styles.rvList}>
                   {recentlyViewed.map((product) => (
                     <div
@@ -148,7 +148,7 @@ export default function ShopSection() {
                   <div className={styles.specsSection}>
                     <h4 className={styles.specsTitle}>
                       <Info size={14} />
-                      Thông số nổi bật:
+                      {t('featuredSpecs')}
                     </h4>
                     <div className={styles.specsGrid}>
                       {Object.entries(activeDetailsProduct.specs).map(([key, list]) => (
@@ -176,7 +176,7 @@ export default function ShopSection() {
                     }}
                   >
                     <ShoppingCart size={18} />
-                    Thêm vào giỏ hàng
+                    {t('addToCartFull')}
                   </button>
                 </div>
               </div>
