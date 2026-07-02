@@ -31,20 +31,24 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: {
-    template: '%s | PE-ForYourPets',
-    default: 'PE - AI-Powered Cat Health Camera',
-  },
-  description: 'AI camera giám sát sức khỏe thú cưng 24/7. Biết sớm, yêu thương lâu dài.',
-  alternates: {
-    canonical: '/',
-    languages: {
-      vi: '/vi',
-      en: '/en',
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    metadataBase: new URL('https://pe-for-your-pets.vercel.app'),
+    title: {
+      template: '%s | PE-ForYourPets',
+      default: 'PE - AI-Powered Cat Health Camera',
     },
-  },
-};
+    description: 'AI camera giám sát sức khỏe thú cưng 24/7. Biết sớm, yêu thương lâu dài.',
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        vi: '/vi',
+        en: '/en',
+      },
+    },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
