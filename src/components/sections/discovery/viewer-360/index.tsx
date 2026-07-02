@@ -22,6 +22,9 @@ export default function ProductViewer360() {
     { key: 'sand', label: t('colors.options.sand'), hex: '#C4A882' },
     { key: 'sage', label: t('colors.options.sage'), hex: '#7A9E7E' },
     { key: 'charcoal', label: t('colors.options.charcoal'), hex: '#5A5A62' },
+    { key: 'orange', label: t('colors.options.orange'), hex: '#F77E2D' },
+    { key: 'blue', label: t('colors.options.blue'), hex: '#313F56' },
+    { key: 'silver', label: t('colors.options.silver'), hex: '#E2E4E5' },
   ];
 
   const onMouseDown = useCallback((e: React.MouseEvent) => {

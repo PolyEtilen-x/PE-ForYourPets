@@ -4,6 +4,9 @@ export const CAM_COLORS = {
   sand: { hex: '#C4A882', body: '#C9AD8A', shadow: '#9A7A58', highlight: '#DCC9A6' },
   sage: { hex: '#7A9E7E', body: '#7A9E7E', shadow: '#5A7A5E', highlight: '#9ABEA0' },
   charcoal: { hex: '#5A5A62', body: '#5A5A62', shadow: '#3A3A42', highlight: '#7A7A82' },
+  orange: { hex: '#F77E2D', body: '#F77E2D', shadow: '#C95D11', highlight: '#FFA666' },
+  blue: { hex: '#313F56', body: '#313F56', shadow: '#1E2736', highlight: '#556887' },
+  silver: { hex: '#E2E4E5', body: '#E2E4E5', shadow: '#BCBEBF', highlight: '#FFFFFF' },
 } as const;
 
 export type ColorKey = keyof typeof CAM_COLORS;

@@ -29,23 +29,44 @@
     "groups": [
       {
         "name": "Camera & AI",
-        "items": ["Góc quan sát 130°", "Nhận dạng AI theo hành vi", "Phát hiện bất thường tự động", "Hoạt động ban đêm IR"]
+        "items": [
+          "Góc quan sát 130°",
+          "Nhận dạng AI theo hành vi",
+          "Phát hiện bất thường tự động",
+          "Hoạt động ban đêm IR"
+        ]
       },
       {
         "name": "Kết nối",
-        "items": ["Wi-Fi 2.4 / 5 GHz", "Bluetooth 5.0 LE", "App iOS & Android"]
+        "items": [
+          "Wi-Fi 2.4 / 5 GHz",
+          "Bluetooth 5.0 LE",
+          "App iOS & Android"
+        ]
       },
       {
         "name": "Kích thước",
-        "items": ["Ø 82mm × H 95mm", "Đặt bàn hoặc gắn tường", "Cáp USB-C ẩn đáy đế"]
+        "items": [
+          "Ø 82mm × H 95mm",
+          "Đặt bàn hoặc gắn tường",
+          "Cáp USB-C ẩn đáy đế"
+        ]
       },
       {
         "name": "Pin",
-        "items": ["Pin tích hợp 3200 mAh", "~7 ngày / lần sạc", "Sạc không dây Qi 10W"]
+        "items": [
+          "Pin tích hợp 3200 mAh",
+          "~7 ngày / lần sạc",
+          "Sạc không dây Qi 10W"
+        ]
       },
       {
         "name": "Ống kính & Độ nét",
-        "items": ["Độ phân giải 2K Ultra-HD (4MP)", "Khẩu độ F/2.0 tối ưu thu sáng", "Chống ngược sáng WDR tự động"]
+        "items": [
+          "Độ phân giải 2K Ultra-HD (4MP)",
+          "Khẩu độ F/2.0 tối ưu thu sáng",
+          "Chống ngược sáng WDR tự động"
+        ]
       }
     ]
   },
@@ -55,7 +76,10 @@
     "options": {
       "sand": "Sand Beige",
       "sage": "Sage Green",
-      "charcoal": "Charcoal"
+      "charcoal": "Charcoal",
+      "orange": "Cosmic Orange",
+      "blue": "Deep Blue",
+      "silver": "Sliver"
     }
   },
   "viewer": {
