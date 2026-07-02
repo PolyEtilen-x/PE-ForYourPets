@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import styles from './style.module.css';
@@ -18,6 +18,43 @@ export default function TensionSection() {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
+
+  // Autoplay slider logic
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let currentIndex = 0;
+    const totalCards = 4;
+
+    const intervalId = setInterval(() => {
+      // Only autoplay scroll if the user is not actively dragging
+      if (isDragging.current) return;
+
+      currentIndex = (currentIndex + 1) % totalCards;
+      const cardEl = container.children[currentIndex] as HTMLElement;
+      if (cardEl) {
+        container.scrollTo({
+          left: cardEl.offsetLeft - container.offsetLeft,
+          behavior: 'smooth',
+        });
+      }
+    }, 3000); // auto-slide every 3 seconds
+
+    // Sync active index when user manually drags or scrolls
+    const handleScroll = () => {
+      if (isDragging.current) {
+        const cardWidth = container.clientWidth;
+        currentIndex = Math.round(container.scrollLeft / cardWidth);
+      }
+    };
+    container.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      clearInterval(intervalId);
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const onMouseDown = (e: React.MouseEvent) => {
     if (!scrollRef.current) return;

@@ -145,3 +145,27 @@
   color: var(--text-muted);
   margin: 0;
 }
+
+@media (min-width: 1024px) {
+  .label {
+    font-size: 14px;
+    letter-spacing: 0.35em;
+  }
+  .card {
+    flex: 0 0 540px;
+  }
+  .imageWrapper {
+    height: 330px;
+  }
+  .number {
+    font-size: 13px;
+  }
+  .statement {
+    font-size: 1.85rem;
+    line-height: 1.35;
+  }
+  .subText {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+}
