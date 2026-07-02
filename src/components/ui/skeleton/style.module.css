@@ -1,3 +1,9 @@
+/* Local keyframe — inline so it always resolves in CSS Modules */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
 /* ── Shimmer base ── */
 .skeleton {
   background: linear-gradient(
@@ -7,7 +13,7 @@
     rgba(14, 21, 18, 0.06) 75%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.6s var(--ease-in-out, cubic-bezier(0.45, 0, 0.55, 1)) infinite;
+  animation: shimmer 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 :global(.dark) .skeleton {
@@ -18,7 +24,7 @@
     rgba(239, 245, 241, 0.04) 75%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.6s var(--ease-in-out, cubic-bezier(0.45, 0, 0.55, 1)) infinite;
+  animation: shimmer 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 /* Border radius variants */
@@ -61,7 +67,7 @@
     rgba(14, 21, 18, 0.06) 75%
   );
   background-size: 200% 100%;
-  animation: shimmer 1.6s var(--ease-in-out, cubic-bezier(0.45, 0, 0.55, 1)) infinite;
+  animation: shimmer 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 :global(.dark) .imageArea {

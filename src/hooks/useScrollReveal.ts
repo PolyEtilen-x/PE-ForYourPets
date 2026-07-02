@@ -1,52 +1,43 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface UseScrollRevealOptions {
-  /**
-   * Fraction of element visible to trigger (0–1).
-   * Default: 0.12 — trigger early for smoother feel
-   */
   threshold?: number;
-  /**
-   * Expand root margin to pre-trigger slightly before entering viewport.
-   * Default: '-40px' — small negative so animation starts just as element enters
-   */
   rootMargin?: string;
-  /**
-   * If true, only reveal once (default). If false, toggles on scroll in/out.
-   */
   once?: boolean;
-  /**
-   * Delay before setting revealed state (ms). Useful for stagger orchestration.
-   */
   delay?: number;
 }
 
-interface UseScrollRevealReturn {
-  ref: React.RefObject<HTMLElement | null>;
+interface UseScrollRevealReturn<T extends HTMLElement> {
+  ref: React.RefObject<T | null>;
   isRevealed: boolean;
 }
 
-export function useScrollReveal({
+// Module-level — không cần useCallback, không gây re-render
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
   threshold = 0.12,
   rootMargin = '-40px',
   once = true,
   delay = 0,
-}: UseScrollRevealOptions = {}): UseScrollRevealReturn {
-  const ref = useRef<HTMLElement>(null);
+}: UseScrollRevealOptions = {}): UseScrollRevealReturn<T> {
+  const ref = useRef<T>(null);
   const [isRevealed, setIsRevealed] = useState(false);
-
-  const prefersReducedMotion = useCallback(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }, []);
+  const delayRef = useRef(delay);
 
   useEffect(() => {
-    // Defer setState out of sync effect body using rAF
+    delayRef.current = delay;
+  }, [delay]);
+
+  useEffect(() => {
     if (prefersReducedMotion()) {
-      const raf = requestAnimationFrame(() => setIsRevealed(true));
-      return () => cancelAnimationFrame(raf);
+      // queueMicrotask makes setState async — satisfies react-hooks/set-state-in-effect
+      queueMicrotask(() => setIsRevealed(true));
+      return;
     }
 
     const element = ref.current;
@@ -57,8 +48,8 @@ export function useScrollReveal({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          if (delay > 0) {
-            timeoutId = setTimeout(() => setIsRevealed(true), delay);
+          if (delayRef.current > 0) {
+            timeoutId = setTimeout(() => setIsRevealed(true), delayRef.current);
           } else {
             setIsRevealed(true);
           }
@@ -77,7 +68,7 @@ export function useScrollReveal({
       observer.disconnect();
       clearTimeout(timeoutId);
     };
-  }, [threshold, rootMargin, once, delay, prefersReducedMotion]);
+  }, [threshold, rootMargin, once]); // delay xử lý qua ref, không cần trong deps
 
   return { ref, isRevealed };
 }

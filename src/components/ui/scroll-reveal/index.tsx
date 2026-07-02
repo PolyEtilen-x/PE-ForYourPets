@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styles from './style.module.css';
 
 type AnimationVariant =
@@ -13,24 +13,28 @@ type AnimationVariant =
 
 interface ScrollRevealProps {
   children: React.ReactNode;
-  /** Animation variant to play when element enters viewport */
   animation?: AnimationVariant;
-  /** Delay before animation starts (ms) */
   delay?: number;
-  /** Duration override (ms). Defaults to 700ms */
   duration?: number;
-  /** Custom className to add when revealed */
   revealedClassName?: string;
-  /** IntersectionObserver threshold (0–1) */
   threshold?: number;
-  /** As prop — renders as this HTML element. Default: 'div' */
   as?: React.ElementType;
   className?: string;
 }
 
+// Module-level — same pattern as useScrollReveal, no useCallback needed
+const checkReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /**
  * ScrollReveal — wraps any content and animates it into view when
  * scrolled into the viewport. Zero dependencies, pure CSS animations.
+ *
+ * @example
+ * <ScrollReveal animation="revealUp" delay={200}>
+ *   <h2>Our Features</h2>
+ * </ScrollReveal>
  */
 export default function ScrollReveal({
   children,
@@ -42,19 +46,21 @@ export default function ScrollReveal({
   as: Tag = 'div',
   className = '',
 }: ScrollRevealProps) {
+  // Generic ref — HTMLElement covers all HTML element subtypes
   const ref = useRef<HTMLElement>(null);
   const [isRevealed, setIsRevealed] = useState(false);
+  const delayRef = useRef(delay);
 
-  const prefersReducedMotion = useCallback(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }, []);
+  // Keep delayRef current without causing observer to re-run
+  useEffect(() => {
+    delayRef.current = delay;
+  }, [delay]);
 
   useEffect(() => {
-    // Use rAF to defer setState out of synchronous effect body
-    if (prefersReducedMotion()) {
-      const raf = requestAnimationFrame(() => setIsRevealed(true));
-      return () => cancelAnimationFrame(raf);
+    // Reduced motion: skip animation, show content immediately
+    if (checkReducedMotion()) {
+      queueMicrotask(() => setIsRevealed(true));
+      return;
     }
 
     const element = ref.current;
@@ -65,7 +71,11 @@ export default function ScrollReveal({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          timeoutId = setTimeout(() => setIsRevealed(true), delay);
+          if (delayRef.current > 0) {
+            timeoutId = setTimeout(() => setIsRevealed(true), delayRef.current);
+          } else {
+            setIsRevealed(true);
+          }
           observer.disconnect();
         }
       },
@@ -78,7 +88,7 @@ export default function ScrollReveal({
       observer.disconnect();
       clearTimeout(timeoutId);
     };
-  }, [delay, threshold, prefersReducedMotion]);
+  }, [threshold]); // delay → delayRef, duration/animation don't affect observer
 
   const animClass = styles[animation] ?? '';
   const revealedClass = isRevealed ? (revealedClassName ?? styles.revealed) : styles.hidden;

@@ -1,4 +1,55 @@
+@keyframes shopScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes shopHeartPop {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.35);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shopSpringPop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  80% {
+    transform: scale(0.96);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 .shopSection {
+
   padding: 100px 24px;
   background-color: var(--bg-section, #f7f9f8);
   width: 100%;
@@ -80,7 +131,7 @@
   display: flex;
   flex-direction: column;
   /* Stagger entry: each card delays by (index * 80ms) */
-  animation: scaleIn 600ms var(--ease-cinematic, cubic-bezier(0.16, 1, 0.3, 1))
+  animation: shopScaleIn 600ms cubic-bezier(0.16, 1, 0.3, 1)
     calc(var(--card-index, 0) * 80ms) both;
 }
 
@@ -163,11 +214,13 @@
 
 /* Heart pop micro-interaction */
 .heartPopping {
-  animation: heartPop 400ms var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1)) both;
+  animation: shopHeartPop 400ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heartPopping { animation: none; }
+  .heartPopping {
+    animation: none;
+  }
 }
 
 .hoverActions {
@@ -315,12 +368,17 @@
 
 /* Check icon spring pop */
 .checkIcon {
-  animation: springPop 400ms var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1)) both;
+  animation: shopSpringPop 400ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .checkIcon { animation: none; }
-  .addedToCart { transition: none; }
+  .checkIcon {
+    animation: none;
+  }
+
+  .addedToCart {
+    transition: none;
+  }
 }
 
 /* Loader */
@@ -350,8 +408,13 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Recently Viewed */
@@ -700,11 +763,23 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes scaleUp {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

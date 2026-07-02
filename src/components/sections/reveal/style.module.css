@@ -48,10 +48,18 @@
   margin-bottom: 32px;
 }
 
+/* Define floatY locally — CSS Module keyframe names are scoped */
+@keyframes cameraFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33%       { transform: translateY(-10px) rotate(-0.5deg); }
+  66%       { transform: translateY(-5px) rotate(0.5deg); }
+}
+
+/* Continuous gentle float — CSS only, no JS */
 .cameraFloat {
   width: 100%;
   height: 100%;
-  animation: floatY 5s var(--ease-in-out, cubic-bezier(0.45, 0, 0.55, 1)) infinite;
+  animation: cameraFloat 5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   will-change: transform;
 }
 
@@ -60,7 +68,6 @@
     animation: none;
   }
 }
-
 
 .heading {
   font-family: var(--font-fraunces), serif;
