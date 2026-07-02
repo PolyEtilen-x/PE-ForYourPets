@@ -12,7 +12,7 @@ import '@/styles/animations.css';
 
 const fraunces = Fraunces({
   subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500'],
+  weight: ['300', '400'],
   variable: '--font-fraunces',
   display: 'swap',
 });
@@ -26,7 +26,7 @@ const inter = Inter({
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  weight: ['400'],
   variable: '--font-jetbrains',
   display: 'swap',
 });
