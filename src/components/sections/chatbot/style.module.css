@@ -12,20 +12,28 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--color-mint) 0%, #6cd1ab 100%);
-  box-shadow: 0 4px 16px rgba(143, 227, 192, 0.3), 0 8px 32px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 16px rgba(143, 227, 192, 0.3), 0 8px 32px rgba(0, 0, 0, 0.15);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--color-moss);
 }
 
 .bubble:hover {
   transform: scale(1.08) rotate(8deg);
-  box-shadow: 0 6px 20px rgba(143, 227, 192, 0.4), 0 12px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 20px rgba(143, 227, 192, 0.4), 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
 .bubbleOpen {
+  background: #fff;
+  color: var(--color-moss);
+  border: 1px solid rgba(14, 21, 18, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+:global(.dark) .bubbleOpen {
   background: var(--color-card-dark);
   color: #fff;
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(143, 227, 192, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .iconMsg, .iconX {
@@ -38,24 +46,25 @@
   bottom: 96px;
   right: 28px;
   z-index: 1000;
-  width: min(380px, 90vw);
-  height: min(520px, 75vh);
+  width: min(385px, 90vw);
+  height: min(530px, 75vh);
   display: flex;
   flex-direction: column;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: rgba(17, 26, 20, 0.88);
+  background: rgba(250, 246, 240, 0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(143, 227, 192, 0.15);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(14, 21, 18, 0.12);
+  box-shadow: 0 12px 40px rgba(14, 21, 18, 0.12);
   animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-:global(.light) .chatWindow {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(14, 21, 18, 0.1);
-  box-shadow: 0 12px 40px rgba(14, 21, 18, 0.15);
+:global(.dark) .chatWindow {
+  background: rgba(8, 14, 11, 0.99); /* Extra dark background matching deep forest green */
+  border: 1px solid rgba(143, 227, 192, 0.2);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65);
 }
 
 /* Header */
@@ -64,8 +73,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
-  border-bottom: 1px solid rgba(143, 227, 192, 0.1);
-  background: rgba(14, 21, 18, 0.4);
+  border-bottom: 1px solid rgba(14, 21, 18, 0.08);
+  background: rgba(14, 21, 18, 0.03);
+}
+
+:global(.dark) .header {
+  border-bottom: 1px solid rgba(143, 227, 192, 0.12);
+  background: rgba(14, 21, 18, 0.5);
 }
 
 .botProfile {
@@ -79,10 +93,15 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(143, 227, 192, 0.15);
+  background: rgba(90, 126, 94, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #5A7E5E;
+}
+
+:global(.dark) .avatar {
+  background: rgba(143, 227, 192, 0.15);
   color: var(--color-mint);
 }
 
@@ -94,7 +113,11 @@
   height: 10px;
   border-radius: 50%;
   background-color: #4ade80;
-  border: 2px solid rgba(17, 26, 20, 0.95);
+  border: 2px solid #faf6f0;
+}
+
+:global(.dark) .statusBadge {
+  border: 2px solid #080e0b;
 }
 
 .title {
@@ -126,8 +149,12 @@
 }
 
 .closeBtn:hover {
-  background: rgba(232, 240, 236, 0.1);
+  background: rgba(14, 21, 18, 0.05);
   color: var(--text-primary);
+}
+
+:global(.dark) .closeBtn:hover {
+  background: rgba(232, 240, 236, 0.1);
 }
 
 /* Messages Area */
@@ -146,8 +173,12 @@
 }
 
 .messagesArea::-webkit-scrollbar-thumb {
-  background: rgba(143, 227, 192, 0.15);
+  background: rgba(90, 126, 94, 0.2);
   border-radius: var(--radius-full);
+}
+
+:global(.dark) .messagesArea::-webkit-scrollbar-thumb {
+  background: rgba(143, 227, 192, 0.15);
 }
 
 .messageRow {
@@ -170,13 +201,18 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgba(143, 227, 192, 0.15);
+  background: rgba(90, 126, 94, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-mint);
+  color: #5A7E5E;
   flex-shrink: 0;
   margin-top: 4px;
+}
+
+:global(.dark) .msgAvatar {
+  background: rgba(143, 227, 192, 0.15);
+  color: var(--color-mint);
 }
 
 .bubbleText {
@@ -190,21 +226,26 @@
 }
 
 .rowBot .bubbleText {
-  background: rgba(232, 240, 236, 0.05);
+  background: rgba(14, 21, 18, 0.04);
+  border: 1px solid rgba(14, 21, 18, 0.07);
   border-top-left-radius: 4px;
-  border: 1px solid rgba(143, 227, 192, 0.08);
 }
 
-:global(.light) .rowBot .bubbleText {
-  background: rgba(14, 21, 18, 0.04);
-  border: 1px solid rgba(14, 21, 18, 0.06);
+:global(.dark) .rowBot .bubbleText {
+  background: rgba(232, 240, 236, 0.05);
+  border: 1px solid rgba(143, 227, 192, 0.1);
 }
 
 .rowUser .bubbleText {
-  background: linear-gradient(135deg, rgba(143, 227, 192, 0.15) 0%, rgba(143, 227, 192, 0.08) 100%);
+  background: rgba(90, 126, 94, 0.08);
+  border: 1px solid rgba(90, 126, 94, 0.18);
   border-top-right-radius: 4px;
-  border: 1px solid rgba(143, 227, 192, 0.2);
   color: var(--text-primary);
+}
+
+:global(.dark) .rowUser .bubbleText {
+  background: linear-gradient(135deg, rgba(143, 227, 192, 0.15) 0%, rgba(143, 227, 192, 0.08) 100%);
+  border: 1px solid rgba(143, 227, 192, 0.2);
 }
 
 /* Suggestion Pills */
@@ -222,9 +263,9 @@
   gap: 8px;
   padding: 8px 14px;
   border-radius: 20px;
-  border: 1px solid rgba(143, 227, 192, 0.2);
-  background: rgba(143, 227, 192, 0.03);
-  color: var(--color-mint);
+  border: 1px solid rgba(90, 126, 94, 0.25);
+  background: rgba(90, 126, 94, 0.04);
+  color: #5A7E5E;
   font-family: var(--font-inter), sans-serif;
   font-size: 12px;
   text-align: left;
@@ -234,9 +275,20 @@
 }
 
 .suggestionPill:hover {
+  background: rgba(90, 126, 94, 0.08);
+  border-color: #5a7e5e;
+  transform: translateX(4px);
+}
+
+:global(.dark) .suggestionPill {
+  border: 1px solid rgba(143, 227, 192, 0.2);
+  background: rgba(143, 227, 192, 0.03);
+  color: var(--color-mint);
+}
+
+:global(.dark) .suggestionPill:hover {
   background: rgba(143, 227, 192, 0.08);
   border-color: var(--color-mint);
-  transform: translateX(4px);
 }
 
 .sparkleIcon {
@@ -255,8 +307,12 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--color-mint);
+  background: #5A7E5E;
   animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+:global(.dark) .dot {
+  background: var(--color-mint);
 }
 
 .dot:nth-child(2) {
@@ -272,15 +328,20 @@
   display: flex;
   align-items: center;
   padding: 12px 16px;
-  border-top: 1px solid rgba(143, 227, 192, 0.1);
-  background: rgba(14, 21, 18, 0.3);
+  border-top: 1px solid rgba(14, 21, 18, 0.08);
+  background: rgba(14, 21, 18, 0.02);
   gap: 12px;
+}
+
+:global(.dark) .inputArea {
+  border-top: 1px solid rgba(143, 227, 192, 0.12);
+  background: rgba(14, 21, 18, 0.4);
 }
 
 .input {
   flex: 1;
-  background: rgba(232, 240, 236, 0.04);
-  border: 1px solid rgba(143, 227, 192, 0.1);
+  background: #ffffff;
+  border: 1px solid rgba(14, 21, 18, 0.12);
   border-radius: 20px;
   padding: 10px 16px;
   color: var(--text-primary);
@@ -291,6 +352,16 @@
 }
 
 .input:focus {
+  border-color: #5A7E5E;
+  box-shadow: 0 0 0 3px rgba(90, 126, 94, 0.08);
+}
+
+:global(.dark) .input {
+  background: rgba(232, 240, 236, 0.04);
+  border: 1px solid rgba(143, 227, 192, 0.1);
+}
+
+:global(.dark) .input:focus {
   border-color: var(--color-mint);
   background: rgba(232, 240, 236, 0.07);
   box-shadow: 0 0 0 3px rgba(143, 227, 192, 0.08);
@@ -301,8 +372,8 @@
   height: 36px;
   border-radius: 50%;
   border: none;
-  background: var(--color-mint);
-  color: var(--color-moss);
+  background: #5A7E5E;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -313,14 +384,27 @@
 
 .sendBtn:hover:not(:disabled) {
   transform: scale(1.08);
+  background: #466349;
+}
+
+:global(.dark) .sendBtn {
+  background: var(--color-mint);
+  color: var(--color-moss);
+}
+
+:global(.dark) .sendBtn:hover:not(:disabled) {
   background: #7AD4B0;
 }
 
 .sendBtn:disabled {
   opacity: 0.35;
   cursor: not-allowed;
-  background: rgba(232, 240, 236, 0.1);
+  background: rgba(14, 21, 18, 0.1);
   color: var(--text-muted);
+}
+
+:global(.dark) .sendBtn:disabled {
+  background: rgba(232, 240, 236, 0.1);
 }
 
 /* Animations */
