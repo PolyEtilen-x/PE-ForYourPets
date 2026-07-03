@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
+import { Playfair_Display, Be_Vietnam_Pro, JetBrains_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -11,17 +11,17 @@ import '@/styles/globals.css';
 import '@/styles/typography.css';
 import '@/styles/animations.css';
 
-const fraunces = Fraunces({
+const heading = Playfair_Display({
   subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400'],
-  variable: '--font-fraunces',
+  weight: ['600', '700', '900'],
+  variable: '--font-heading',
   display: 'swap',
 });
 
-const inter = Inter({
+const body = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500'],
-  variable: '--font-inter',
+  weight: ['400', '500', '600'],
+  variable: '--font-body',
   display: 'swap',
 });
 
@@ -77,7 +77,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   return (
     <html
       lang={locale}
-      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${heading.variable} ${body.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         {/* Preload the hero LCP image so browser discovers it early */}

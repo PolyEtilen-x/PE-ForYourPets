@@ -1,4 +1,8 @@
 :root {
+  /* Font Aliases to support new layout variables globally without editing 30+ files */
+  --font-fraunces: var(--font-heading);
+  --font-inter: var(--font-body);
+
   /* Hex Palette Colors */
   --color-mint: #8FE3C0;
   --color-orange: #F2A65A;
