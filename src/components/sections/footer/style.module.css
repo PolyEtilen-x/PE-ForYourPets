@@ -27,6 +27,19 @@
   font-weight: 500;
 }
 
+.logoLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logoImg {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
 .links {
   display: flex;
   flex-wrap: wrap;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
 import styles from './style.module.css';
 
 export default function FooterSection() {
@@ -11,7 +12,9 @@ export default function FooterSection() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.topRow}>
-          <span className={styles.logo}>PE</span>
+          <Link href="/" className={styles.logoLink} aria-label="PE Home">
+            <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+          </Link>
           <div className={styles.links}>
             {linksKeys.map((key) => (
               <a key={key} href="#" className={styles.link}>
