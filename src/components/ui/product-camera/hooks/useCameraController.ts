@@ -7,21 +7,22 @@ export interface CameraRotationState {
   bodyPitch: React.MutableRefObject<number>;
 }
 
+// Tăng sensitivity để kéo nhanh hơn nữa
+const DRAG_SENSITIVITY = 0.018;
+const PITCH_LIMIT      = Math.PI / 4; // ±45°
+
 export function useCameraController(interactive = true): CameraRotationState {
   const { gl } = useThree();
 
   const turntableYaw = useRef(0);
   const bodyPitch    = useRef(0);
+
   const targetYaw    = useRef(0);
   const targetPitch  = useRef(0);
 
   const isDragging   = useRef(false);
   const lastPos      = useRef({ x: 0, y: 0 });
   const velocity     = useRef({ x: 0, y: 0 });
-
-  // Tăng sensitivity để kéo nhanh hơn nữa
-  const DRAG_SENSITIVITY = 0.018;
-  const PITCH_LIMIT      = Math.PI / 4; // ±45°
 
   useEffect(() => {
     if (!interactive) return;

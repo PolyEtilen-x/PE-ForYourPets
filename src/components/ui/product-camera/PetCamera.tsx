@@ -2,7 +2,7 @@
 
 import React, { Suspense, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Environment } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 import { ProductCamera3DProps } from './types';
 import { SCENE, LIGHTING, CONTROLS, ASSEMBLY, CAMERA_COLORS } from './constants';
@@ -21,6 +21,8 @@ import { useCameraController } from './hooks/useCameraController';
 import { useIdleAnimation } from './hooks/useIdleAnimation';
 
 // --- Studio lighting rig (3-point: key + fill + rim) ---
+// Không dùng Environment preset="studio" vì nó load HDR nặng (~500KB).
+// Custom DirectionalLight + AmbientLight đủ đẹp và nhẹ hơn nhiều.
 function StudioLighting() {
   return (
     <>
@@ -52,21 +54,21 @@ interface PetCameraModelProps {
 
 function PetCameraModel({ color, interactive }: PetCameraModelProps) {
   // References for mechanical groups
-  const rootRef = useRef<THREE.Group>(null);
-  const turntableGroupRef = useRef<THREE.Group>(null);
-  const bodyGroupRef = useRef<THREE.Group>(null);
-  const bodyScaleGroupRef = useRef<THREE.Group>(null); // For idle breathing without messing with rotation
+  const rootRef            = useRef<THREE.Group>(null);
+  const turntableGroupRef  = useRef<THREE.Group>(null);
+  const bodyGroupRef       = useRef<THREE.Group>(null);
+  // For idle breathing without messing with rotation
+  const bodyScaleGroupRef  = useRef<THREE.Group>(null);
 
-  // Interaction Hooks
+  // Interaction & animation hooks
   const { turntableYaw, bodyPitch } = useCameraController(interactive);
-  
-  useIdleAnimation({
-    cameraGroupRef: rootRef,
-    bodyGroupRef: bodyScaleGroupRef,
-    turntableRef: turntableGroupRef,
-  }, interactive);
 
-  // Apply rotations every frame
+  useIdleAnimation(
+    { cameraGroupRef: rootRef, bodyGroupRef: bodyScaleGroupRef, turntableRef: turntableGroupRef },
+    interactive,
+  );
+
+  // Apply rotations every frame — runs inside Canvas so THREE.MathUtils is safe
   useFrame(() => {
     if (turntableGroupRef.current) {
       turntableGroupRef.current.rotation.y = turntableYaw.current;
@@ -105,10 +107,9 @@ function PetCameraModel({ color, interactive }: PetCameraModelProps) {
 // --- Canvas wrapper ---
 export default function PetCamera({
   color = 'sage',
-  autoRotate = false,
   interactive = true,
   enableZoom = true,
-  enableRotate = true, // We will not use this for OrbitControls anymore, it's for custom interaction
+  enableRotate = true,
   className,
 }: ProductCamera3DProps) {
   const colorHex = CAMERA_COLORS[color ?? 'sage'] ?? CAMERA_COLORS.sage;
@@ -117,13 +118,19 @@ export default function PetCamera({
     <div className={`${styles.wrapper} ${className ?? ''}`} style={{ touchAction: 'none' }}>
       <Canvas
         className={styles.canvas}
-        frameloop="demand"
-        dpr={[1, 2]}
-        shadows
+        // "always" vì useIdleAnimation chạy liên tục mỗi frame.
+        // "demand" sẽ freeze khi không có interaction.
+        frameloop="always"
+        // Cap DPR: mobile tối đa 1.5, desktop 2 — tránh render 4× pixel trên Retina màn.
+        // [min, max] — R3F chọn Math.min(window.devicePixelRatio, max).
+        dpr={[1, 1.5]}
+        shadows={false}  // Shadow map tốn 10–30ms/frame — tắt vì lights đủ đẹp
         gl={{
           antialias: true,
           alpha: true,
           powerPreference: 'high-performance',
+          // Tắt depth buffer precision cao không cần thiết cho product viewer
+          precision: 'mediump',
         }}
       >
         <PerspectiveCamera
@@ -135,16 +142,15 @@ export default function PetCamera({
         />
 
         <StudioLighting />
-        <Environment preset="studio" />
 
-        {/* OrbitControls - ROTATION DISABLED. Only handles zoom/pan if needed. */}
+        {/* OrbitControls — chỉ dùng cho zoom, KHÔNG xoay scene toàn cục. */}
         <OrbitControls
           enableDamping={CONTROLS.DAMPING}
           dampingFactor={CONTROLS.DAMPING_FACTOR}
           enableZoom={enableZoom}
-          enableRotate={false} // NEVER rotate the scene globally
+          enableRotate={false}   // Xoay được xử lý bởi useCameraController
           enablePan={false}
-          autoRotate={false}   // Handled by custom idle hooks
+          autoRotate={false}     // Handled by useIdleAnimation
           minDistance={SCENE.ZOOM_RANGE[0]}
           maxDistance={SCENE.ZOOM_RANGE[1]}
         />

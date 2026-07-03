@@ -1,4 +1,4 @@
-import { CameraColor } from './types';
+
 
 // ============================================================
 // SOURCE OF TRUTH — from product-physical.md

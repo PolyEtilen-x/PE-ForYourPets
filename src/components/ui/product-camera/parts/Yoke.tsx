@@ -31,7 +31,7 @@ export default function Yoke({ color }: YokeProps) {
   const armD = 0.60; // arm cross-section depth (half = 0.30)
   const rad  = 0.15; // corner rounding
 
-  const { armGeo, capGeo } = useMemo(() => {
+  const { armGeo } = useMemo(() => {
     // Cross-section: rounded rectangle in local XY plane of extrusion
     const shape = new THREE.Shape();
     const hw = armW / 2;
@@ -79,10 +79,7 @@ export default function Yoke({ color }: YokeProps) {
       bevelEnabled: false,
     });
 
-    // Round end-cap at the pivot connection
-    const capGeo = new THREE.SphereGeometry(armW / 2, 16, 16, 0, Math.PI);
-
-    return { armGeo, capGeo };
+    return { armGeo };
   }, [px, py, tTop, armW, armD, rad]);
 
   const matProps = {
