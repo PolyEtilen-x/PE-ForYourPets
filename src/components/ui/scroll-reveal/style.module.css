@@ -1,161 +1,64 @@
-@keyframes srRevealUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes srRevealFade {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes srSlideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-32px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes srSlideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(32px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes srScaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.92) translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes srSpringPop {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-
-  60% {
-    transform: scale(1.08);
-    opacity: 1;
-  }
-
-  80% {
-    transform: scale(0.96);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
 /* ── Base ── */
 
 .base {
-  will-change: opacity, transform;
+  transition-property: opacity, transform;
+  transition-duration: var(--reveal-duration, 700ms);
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); /* ultra-smooth out-expo */
 }
 
 /* Pre-reveal: element is hidden */
 .hidden {
   opacity: 0;
+  /* Prepare GPU layers for upcoming transition */
+  will-change: opacity, transform;
 }
 
 /* Post-reveal: element is visible */
 .revealed {
   opacity: 1;
+  transform: translate(0, 0) scale(1) !important;
+  /* Unset will-change once revealed to free GPU memory, preventing layout layer exhaustion */
+  will-change: auto;
 }
 
-/* ── Animation variants — only active in .revealed state ── */
+/* ── Animation variants (initial states when hidden) ── */
 
 .revealUp.hidden {
-  transform: translateY(40px);
-}
-
-.revealUp.revealed {
-  animation: srRevealUp var(--reveal-duration, 700ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform: translateY(30px);
 }
 
 .revealFade.hidden {
-  opacity: 0;
-}
-
-.revealFade.revealed {
-  animation: srRevealFade var(--reveal-duration, 700ms) cubic-bezier(0.25, 1, 0.5, 1) both;
+  /* opacity-only, no transform */
 }
 
 .slideInLeft.hidden {
-  transform: translateX(-32px);
-}
-
-.slideInLeft.revealed {
-  animation: srSlideInLeft var(--reveal-duration, 700ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform: translateX(-30px);
 }
 
 .slideInRight.hidden {
-  transform: translateX(32px);
-}
-
-.slideInRight.revealed {
-  animation: srSlideInRight var(--reveal-duration, 700ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform: translateX(30px);
 }
 
 .scaleIn.hidden {
-  transform: scale(0.92) translateY(20px);
-}
-
-.scaleIn.revealed {
-  animation: srScaleIn var(--reveal-duration, 700ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform: scale(0.94) translateY(15px);
 }
 
 .springPop.hidden {
   transform: scale(0.8);
 }
 
-.springPop.revealed {
-  animation: srSpringPop var(--reveal-duration, 600ms) cubic-bezier(0.34, 1.56, 0.64, 1) both;
+.springPop {
+  /* Overshoot spring physics transition timing */
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-duration: var(--reveal-duration, 600ms);
 }
 
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
-
-  .base,
-  .hidden,
-  .revealed,
-  .revealUp.revealed,
-  .revealFade.revealed,
-  .slideInLeft.revealed,
-  .slideInRight.revealed,
-  .scaleIn.revealed,
-  .springPop.revealed {
-    animation: none !important;
+  .base {
+    transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+    will-change: auto !important;
   }
 }

@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import * as THREE from 'three';
-import { ASSEMBLY, GEOMETRY } from '../constants';
+import { GEOMETRY } from '../constants';
 
 /**
  * FrontGlass — recessed circular glass panel on front of body sphere.
@@ -27,7 +26,6 @@ export default function FrontGlass() {
 
   // Z coordinates on sphere surface
   const faceZ  = bodyR * Math.cos(thetaGlass);     // ≈ 1.81 — glass edge Z
-  const lensZ  = bodyR * Math.cos(thetaLens);      // ≈ 2.41 — lens opening Z
 
   return (
     <group>

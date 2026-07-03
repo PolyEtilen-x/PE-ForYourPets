@@ -3,7 +3,7 @@
 import React from 'react';
 import * as THREE from 'three';
 import { useTexture, Decal } from '@react-three/drei';
-import { ASSEMBLY, GEOMETRY, DIMENSIONS } from '../constants';
+import { ASSEMBLY, GEOMETRY } from '../constants';
 
 interface PivotProps {
   color: string;
@@ -24,7 +24,6 @@ export default function Pivot({ color }: PivotProps) {
   const px    = ASSEMBLY.PIVOT_X;                    // 2.61
   const py    = ASSEMBLY.PIVOT_Y;                    // 2.625
   const r     = GEOMETRY.PIVOT_RADIUS;               // 0.85
-  const armHW = 0.45;                                // half of arm cross-section width
 
   const matProps = { roughness: 0.38, clearcoat: 0.12, clearcoatRoughness: 0.25, metalness: 0.04 };
 

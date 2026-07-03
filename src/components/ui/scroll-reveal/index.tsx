@@ -22,19 +22,10 @@ interface ScrollRevealProps {
   className?: string;
 }
 
-// Module-level — same pattern as useScrollReveal, no useCallback needed
-const checkReducedMotion = () =>
-  typeof window !== 'undefined' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 /**
- * ScrollReveal — wraps any content and animates it into view when
- * scrolled into the viewport. Zero dependencies, pure CSS animations.
- *
- * @example
- * <ScrollReveal animation="revealUp" delay={200}>
- *   <h2>Our Features</h2>
- * </ScrollReveal>
+ * ScrollReveal — wraps any content and transitions it into view when
+ * scrolled into the viewport. Optimized using GPU transitions and
+ * automatic will-change layer cleanup to protect memory on mobile devices.
  */
 export default function ScrollReveal({
   children,
@@ -46,19 +37,12 @@ export default function ScrollReveal({
   as: Tag = 'div',
   className = '',
 }: ScrollRevealProps) {
-  // Generic ref — HTMLElement covers all HTML element subtypes
   const ref = useRef<HTMLElement>(null);
   const [isRevealed, setIsRevealed] = useState(false);
-  const delayRef = useRef(delay);
-
-  // Keep delayRef current without causing observer to re-run
-  useEffect(() => {
-    delayRef.current = delay;
-  }, [delay]);
 
   useEffect(() => {
     // Reduced motion: skip animation, show content immediately
-    if (checkReducedMotion()) {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       queueMicrotask(() => setIsRevealed(true));
       return;
     }
@@ -71,29 +55,35 @@ export default function ScrollReveal({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          if (delayRef.current > 0) {
-            timeoutId = setTimeout(() => setIsRevealed(true), delayRef.current);
+          if (delay > 0) {
+            timeoutId = setTimeout(() => setIsRevealed(true), delay);
           } else {
             setIsRevealed(true);
           }
           observer.disconnect();
         }
       },
-      { threshold, rootMargin: '-30px' }
+      { threshold, rootMargin: '-20px' }
     );
 
     observer.observe(element);
 
     return () => {
       observer.disconnect();
-      clearTimeout(timeoutId);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     };
-  }, [threshold]); // delay → delayRef, duration/animation don't affect observer
+  }, [threshold, delay]);
 
   const animClass = styles[animation] ?? '';
   const revealedClass = isRevealed ? (revealedClassName ?? styles.revealed) : styles.hidden;
-
-  const TagComponent = Tag as any;
+  const TagComponent = Tag as unknown as React.ComponentType<{
+    children?: React.ReactNode;
+    className?: string;
+    style?: React.CSSProperties;
+    ref?: React.Ref<HTMLElement | null>;
+  }>;
 
   return (
     <TagComponent

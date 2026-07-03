@@ -34,7 +34,7 @@ export default function ShopSection() {
     return () => cancelAnimationFrame(animFrame);
   }, []);
 
-  if (!mounted || isLoading) {
+  if (isLoading && !products) {
     return (
       <section id="order" className={styles.shopSection}>
         <div className={styles.container}>
@@ -108,7 +108,7 @@ export default function ShopSection() {
               {products?.map((product: Product, index: number) => {
                 const isAdded = addedCards.has(product.id);
                 const isPopped = poppedHearts.has(product.id);
-                const isFav = isFavorited(product.id);
+                const isFav = mounted && isFavorited(product.id);
 
                 return (
                   <div
@@ -180,7 +180,7 @@ export default function ShopSection() {
             </div>
 
             {/* Recently Viewed Products */}
-            {recentlyViewed.length > 0 && (
+            {mounted && recentlyViewed.length > 0 && (
               <ScrollReveal animation="revealUp" duration={600}>
                 <div className={styles.recentlyViewedSection}>
                   <h3 className={styles.rvTitle}>{t('recentlyViewed')}</h3>

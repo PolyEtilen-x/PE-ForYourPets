@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ASSEMBLY, GEOMETRY } from '../constants';
+import { ASSEMBLY } from '../constants';
 
 const MINT = '#8FE3C0';
 
