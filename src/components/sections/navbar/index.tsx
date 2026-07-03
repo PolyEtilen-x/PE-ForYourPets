@@ -7,6 +7,7 @@ import LocaleSwitcher from '@/components/ui/locale-switcher';
 import { Sun, Moon, Menu, X, Heart, ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/stores/useCartStore';
 import { useWishlistStore } from '@/stores/useWishlistStore';
+import { Link } from '@/i18n/routing';
 import styles from './style.module.css';
 
 export default function NavBar() {
@@ -48,7 +49,9 @@ export default function NavBar() {
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${unscrolledDark}`}>
-      <span className={styles.logo}>PE - For Your Pets</span>
+      <Link href="/" className={styles.logoLink} aria-label="PE Home">
+        <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+      </Link>
 
       <div className={`${styles.menu} ${mobileMenuOpen ? styles.mobileOpen : ''}`}>
         <div className={styles.links}>
