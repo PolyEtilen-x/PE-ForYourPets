@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useWishlistStore } from '@/stores/useWishlistStore';
 import { useCartStore } from '@/stores/useCartStore';
@@ -70,8 +71,14 @@ export default function WishlistDrawer() {
               {items.map((item) => (
                 <div key={item.id} className={styles.itemCard}>
                   <div className={styles.imageWrapper}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={item.image} alt={item.name} className={styles.image} />
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={80}
+                      height={80}
+                      style={{ objectFit: 'cover' }}
+                      className={styles.image}
+                    />
                   </div>
                   <div className={styles.itemDetails}>
                     <h3 className={styles.itemName}>{item.name}</h3>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useProductQuery } from '@/queries/useProductQuery';
 import { useCartStore } from '@/stores/useCartStore';
@@ -106,8 +107,13 @@ export default function ShopSection() {
                     style={{ '--card-index': index } as React.CSSProperties}
                   >
                     <div className={styles.imageContainer}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={product.image} alt={product.name} className={styles.productImage} />
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className={styles.productImage}
+                      />
 
                       {/* Wishlist — heart-pop micro-interaction */}
                       <button
@@ -177,8 +183,14 @@ export default function ShopSection() {
                         title={product.name}
                       >
                         <div className={styles.rvImageWrapper}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={product.image} alt={product.name} className={styles.rvImage} />
+                          <Image
+                            src={product.image}
+                            alt={product.name}
+                            width={64}
+                            height={64}
+                            style={{ objectFit: 'cover' }}
+                            className={styles.rvImage}
+                          />
                         </div>
                         <span className={styles.rvName}>{product.name.split(' ').slice(0, 3).join(' ')}</span>
                       </div>
@@ -200,8 +212,14 @@ export default function ShopSection() {
             </button>
             <div className={styles.modalBody}>
               <div className={styles.modalImageWrapper}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={activeDetailsProduct.image} alt={activeDetailsProduct.name} className={styles.modalImage} />
+                <Image
+                  src={activeDetailsProduct.image}
+                  alt={activeDetailsProduct.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  style={{ objectFit: 'cover' }}
+                  className={styles.modalImage}
+                />
               </div>
               <div className={styles.modalDetails}>
                 <h3 className={styles.modalTitle}>{activeDetailsProduct.name}</h3>

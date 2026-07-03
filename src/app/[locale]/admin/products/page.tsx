@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import {
@@ -180,9 +181,12 @@ export default function AdminProductsPage() {
               <tr key={product.id} className={!product.isActive ? styles.inactiveRow : ''}>
                 <td>
                   <div className={styles.imgWrapper}>
-                    <img
+                    <Image
                       src={product.images?.[0] || 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=100&h=100&fit=crop&q=80'}
                       alt={product.name}
+                      width={40}
+                      height={40}
+                      style={{ objectFit: 'cover' }}
                     />
                   </div>
                 </td>
