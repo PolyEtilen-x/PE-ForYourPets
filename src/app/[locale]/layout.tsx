@@ -80,14 +80,6 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
-        {/* Preload the hero LCP image so browser discovers it early */}
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero-bg.webp"
-          type="image/webp"
-          fetchPriority="high"
-        />
         {/* Inline theme script — runs before paint to prevent FOUC */}
         <script
           dangerouslySetInnerHTML={{
