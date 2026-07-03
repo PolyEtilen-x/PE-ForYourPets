@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useTranslations } from 'next-intl';
-import ProductCamera from '@/components/ui/product-camera';
+import { ProductCameraSvg as ProductCamera } from '@/components/ui/product-camera';
 import PulseLine from '@/components/ui/pulse-line';
 import ScrollReveal from '@/components/ui/scroll-reveal';
 import styles from './style.module.css';

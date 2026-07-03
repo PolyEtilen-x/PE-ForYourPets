@@ -95,7 +95,7 @@ export default function ProductViewer360() {
           className={styles.viewerBox}
         >
           <div className={styles.cameraBox}>
-            <ProductCamera colorKey={colorKey} rotation={rotation} />
+            <ProductCamera color={colorKey as any} />
           </div>
           <div className={styles.metrics}>
             <RotateCw size={14} className={styles.rotateIcon} />

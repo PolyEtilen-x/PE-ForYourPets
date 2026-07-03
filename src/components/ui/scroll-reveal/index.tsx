@@ -93,13 +93,15 @@ export default function ScrollReveal({
   const animClass = styles[animation] ?? '';
   const revealedClass = isRevealed ? (revealedClassName ?? styles.revealed) : styles.hidden;
 
+  const TagComponent = Tag as any;
+
   return (
-    <Tag
+    <TagComponent
       ref={ref}
       className={`${styles.base} ${animClass} ${revealedClass} ${className}`.trim()}
       style={{ '--reveal-duration': `${duration}ms` } as React.CSSProperties}
     >
       {children}
-    </Tag>
+    </TagComponent>
   );
 }
