@@ -11,6 +11,7 @@ import { useNewsletterStore } from '@/stores/useNewsletterStore';
 import Toast from '@/components/ui/toast';
 import { Input } from '@/components/ui/input';
 import Button from '@/components/ui/button';
+import ScrollReveal from '@/components/ui/scroll-reveal';
 import styles from './style.module.css';
 
 export default function ResolutionSection() {
@@ -69,69 +70,75 @@ export default function ResolutionSection() {
         <div className={styles.imageOverlay} />
 
         {/* Floating glassmorphism Notification card */}
-        <div className={styles.notificationCard}>
-          <div className={styles.cardHeader}>
-            <span className={styles.time}>09:41</span>
-            <div className={styles.barLines}>
-              {[5, 7, 9, 11].map((h, i) => (
-                <div
-                  key={i}
-                  className={styles.bar}
-                  style={{
-                    height: h,
-                    background: i < 3 ? '#E8F0EC' : 'rgba(232,240,236,0.3)',
-                  }}
-                />
-              ))}
+        <ScrollReveal animation="springPop" delay={200} duration={800}>
+          <div className={styles.notificationCard}>
+            <div className={styles.cardHeader}>
+              <span className={styles.time}>09:41</span>
+              <div className={styles.barLines}>
+                {[5, 7, 9, 11].map((h, i) => (
+                  <div
+                    key={i}
+                    className={styles.bar}
+                    style={{
+                      height: h,
+                      background: i < 3 ? '#E8F0EC' : 'rgba(232,240,236,0.3)',
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className={styles.cardBody}>
+              <div className={styles.avatar}>
+                <span>C</span>
+              </div>
+              <div className={styles.alertContent}>
+                <p className={styles.alertMeta}>{t('notification.title')}</p>
+                <p className={styles.alertText}>
+                  {t('notification.content')}
+                  <span className={styles.mintText}>{t('notification.statusAccent')}</span>
+                  {t('notification.contentEnd')}
+                  <span className={styles.orangeText}>{t('notification.statusAlert')}</span>
+                </p>
+              </div>
             </div>
           </div>
-          <div className={styles.cardBody}>
-            <div className={styles.avatar}>
-              <span>C</span>
-            </div>
-            <div className={styles.alertContent}>
-              <p className={styles.alertMeta}>{t('notification.title')}</p>
-              <p className={styles.alertText}>
-                {t('notification.content')}
-                <span className={styles.mintText}>{t('notification.statusAccent')}</span>
-                {t('notification.contentEnd')}
-                <span className={styles.orangeText}>{t('notification.statusAlert')}</span>
-              </p>
-            </div>
-          </div>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* Copywriting text + Form */}
-      <div className={styles.formContainer}>
-        <h2 className={styles.heading}>
-          {t('heading')}
-          <em className={styles.accent}>{t('headingAccent')}</em>
-        </h2>
-        <p className={styles.bodyText}>{t('body')}</p>
+      <ScrollReveal animation="revealUp" delay={100} duration={700}>
+        <div className={styles.formContainer}>
+          <h2 className={styles.heading}>
+            {t('heading')}
+            <em className={styles.accent}>{t('headingAccent')}</em>
+          </h2>
+          <p className={styles.bodyText}>{t('body')}</p>
 
-        {isSubmitted ? (
-          <div className={styles.successCard}>
-            <p className={styles.successTitle}>{t('form.successTitle')}</p>
-            <p className={styles.successSub}>{t('form.successBody')}</p>
-            <p className={styles.submittedEmail}>{submittedEmail}</p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-            <div className={styles.inputBox}>
-              <Input
-                type="email"
-                placeholder={t('form.placeholder')}
-                error={errors.email?.message}
-                {...register('email')}
-              />
-            </div>
-            <Button type="submit" disabled={mutation.isPending}>
-              {mutation.isPending ? tCommon('cta.submitting') : t('form.submit')}
-            </Button>
-          </form>
-        )}
-      </div>
+          {isSubmitted ? (
+            <ScrollReveal animation="springPop" duration={600}>
+              <div className={styles.successCard}>
+                <p className={styles.successTitle}>{t('form.successTitle')}</p>
+                <p className={styles.successSub}>{t('form.successBody')}</p>
+                <p className={styles.submittedEmail}>{submittedEmail}</p>
+              </div>
+            </ScrollReveal>
+          ) : (
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+              <div className={styles.inputBox}>
+                <Input
+                  type="email"
+                  placeholder={t('form.placeholder')}
+                  error={errors.email?.message}
+                  {...register('email')}
+                />
+              </div>
+              <Button type="submit" disabled={mutation.isPending}>
+                {mutation.isPending ? tCommon('cta.submitting') : t('form.submit')}
+              </Button>
+            </form>
+          )}
+        </div>
+      </ScrollReveal>
 
       {/* Toasts notifications */}
       {toastMessage && (

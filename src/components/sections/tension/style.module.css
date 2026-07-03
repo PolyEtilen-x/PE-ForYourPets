@@ -28,27 +28,37 @@
   }
 }
 
-.scrollContainer {
-  display: flex;
-  gap: 20px;
-  padding: 0 20px 16px;
-  overflow-x: auto;
+.marqueeContainer {
+  overflow: hidden;
   width: 100%;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  padding: 10px 0;
 }
 
-@media (min-width: 768px) {
-  .scrollContainer {
-    gap: 24px;
-    padding: 0 40px 16px;
+.marqueeTrack {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: scrollContinuous 32s linear infinite;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollContinuous {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 10px));
   }
 }
 
-.scrollContainer::-webkit-scrollbar {
-  display: none;
-  /* Safari / Chrome */
+@media (min-width: 768px) {
+  .marqueeTrack {
+    gap: 24px;
+    animation-duration: 45s;
+  }
 }
 
 .card {
@@ -144,4 +154,28 @@
   line-height: 1.6;
   color: var(--text-muted);
   margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .label {
+    font-size: 14px;
+    letter-spacing: 0.35em;
+  }
+  .card {
+    flex: 0 0 540px;
+  }
+  .imageWrapper {
+    height: 330px;
+  }
+  .number {
+    font-size: 13px;
+  }
+  .statement {
+    font-size: 1.85rem;
+    line-height: 1.35;
+  }
+  .subText {
+    font-size: 15px;
+    line-height: 1.65;
+  }
 }

@@ -1,28 +1,188 @@
-/* Global keyframe animations */
+/* ============================================================
+   Global Keyframe Animations — PE-ForYourPets
+   Rules:
+   - Only animate `opacity` and `transform` (no layout props)
+   - All animations wrapped in prefers-reduced-motion guard in components
+   - `will-change` set per-component, not globally here
+   ============================================================ */
 
+/* ── Existing (kept) ── */
 @keyframes bounceScroll {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(6px);
-  }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.85;
-  }
-  50% {
-    opacity: 0.45;
-  }
+  0%, 100% { opacity: 0.85; }
+  50%       { opacity: 0.45; }
 }
 
 @keyframes floatIndicator {
-  0%, 100% {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+/* ── Reveal Animations ── */
+
+/* Fade + rise from below — primary scroll reveal */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
     transform: translateY(0);
   }
-  50% {
-    transform: translateY(-4px);
+}
+
+/* Pure fade-in */
+@keyframes revealFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Slide in from left — used for eyebrow labels, section tags */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale + fade — for cards entering viewport, modal open */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Spring pop — used for micro-interaction success states */
+@keyframes springPop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.08); opacity: 1; }
+  80%  { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+
+/* ── Loading / Skeleton ── */
+
+/* Shimmer sweep — skeleton loading effect */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── Parallax & Float ── */
+
+/* Gentle vertical float — product camera, hero elements */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33%       { transform: translateY(-10px) rotate(-0.5deg); }
+  66%       { transform: translateY(-5px) rotate(0.5deg); }
+}
+
+/* ── Micro-interactions ── */
+
+/* Ripple circle expand — button click feedback */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Heart pop — wishlist toggle */
+@keyframes heartPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.35); }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* Cart bounce — add to cart success */
+@keyframes cartBounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-8px); }
+  60%  { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+/* ── Particle / Confetti ── */
+
+/* Confetti dot explosion — newsletter success */
+@keyframes particleFly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: var(--particle-to);
+    opacity: 0;
+  }
+}
+
+/* ── Text ── */
+
+/* Clip reveal — text appears as if drawn */
+@keyframes clipReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+/* Number count-up glow pulse */
+@keyframes countGlow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; color: var(--color-mint); }
+}
+
+/* ── Page transitions ── */
+
+/* Section wipe in from bottom */
+@keyframes wipeUp {
+  from {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0% 0 0 0);
+  }
+}
+
+/* Navbar scroll-in */
+@keyframes navbarSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

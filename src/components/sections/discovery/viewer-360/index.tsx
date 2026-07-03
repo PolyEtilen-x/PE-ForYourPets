@@ -3,7 +3,9 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import ProductCamera, { ColorKey } from '@/components/ui/product-camera';
-import { RotateCw } from 'lucide-react';
+import { useProductQuery } from '@/queries/useProductQuery';
+import { useCartStore } from '@/stores/useCartStore';
+import { RotateCw, ShoppingCart } from 'lucide-react';
 import styles from './style.module.css';
 
 export default function ProductViewer360() {
@@ -13,10 +15,16 @@ export default function ProductViewer360() {
   const dragging = useRef(false);
   const lastX = useRef(0);
 
+  const { data: cameraProduct } = useProductQuery('pe');
+  const { addItem } = useCartStore();
+
   const swatches: { key: ColorKey; label: string; hex: string }[] = [
     { key: 'sand', label: t('colors.options.sand'), hex: '#C4A882' },
     { key: 'sage', label: t('colors.options.sage'), hex: '#7A9E7E' },
     { key: 'charcoal', label: t('colors.options.charcoal'), hex: '#5A5A62' },
+    { key: 'orange', label: t('colors.options.orange'), hex: '#F77E2D' },
+    { key: 'blue', label: t('colors.options.blue'), hex: '#313F56' },
+    { key: 'silver', label: t('colors.options.silver'), hex: '#E2E4E5' },
   ];
 
   const onMouseDown = useCallback((e: React.MouseEvent) => {
@@ -95,6 +103,21 @@ export default function ProductViewer360() {
           </div>
           <p className={styles.hint}>{t('viewer.hint')}</p>
         </div>
+
+        {cameraProduct && (
+          <div className={styles.buyWrapper}>
+            <div className={styles.priceRow}>
+              <span className={styles.price}>${cameraProduct.price.toFixed(2)}</span>
+              {cameraProduct.compareAtPrice && (
+                <span className={styles.comparePrice}>${cameraProduct.compareAtPrice.toFixed(2)}</span>
+              )}
+            </div>
+            <button className={styles.addToCartBtn} onClick={() => addItem(cameraProduct)}>
+              <ShoppingCart size={16} />
+              <span>Thêm vào giỏ hàng</span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

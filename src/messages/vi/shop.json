@@ -1,0 +1,59 @@
+{
+  "eyebrow": "Hệ sinh thái PE",
+  "title": "Cửa hàng thiết bị thú cưng",
+  "subtitle": "Trang bị giải pháp công nghệ thông minh đỉnh cao để chăm sóc và bảo vệ sức khỏe người bạn bốn chân của bạn.",
+  "loading": "Đang tải danh sách sản phẩm...",
+  "error": "Không thể tải sản phẩm. Vui lòng thử lại sau.",
+  "quickView": "Xem chi tiết",
+  "addToCart": "Thêm vào giỏ",
+  "addedToCart": "Đã thêm vào giỏ!",
+  "addToCartFull": "Thêm vào giỏ hàng",
+  "recentlyViewed": "Sản phẩm đã xem gần đây",
+  "featuredSpecs": "Thông số nổi bật:",
+  "cart": {
+    "title": "Giỏ hàng",
+    "empty": "Giỏ hàng của bạn đang trống.",
+    "continue": "Tiếp tục khám phá",
+    "subtotal": "Tổng phụ",
+    "taxNote": "Thuế và phí vận chuyển sẽ được tính khi thanh toán.",
+    "checkout": "Thanh toán ngay",
+    "checkoutAlert": "Chức năng thanh toán đang được tích hợp!"
+  },
+  "wishlist": {
+    "title": "Yêu thích",
+    "empty": "Danh sách yêu thích đang trống.",
+    "continue": "Tìm sản phẩm yêu thích",
+    "moveToCart": "Thêm vào giỏ"
+  },
+  "checkoutPage": {
+    "title": "Thanh toán đơn hàng",
+    "shippingTitle": "Thông tin giao hàng",
+    "fullName": "Họ và tên",
+    "fullNamePlaceholder": "Nguyễn Văn A",
+    "phone": "Số điện thoại",
+    "phonePlaceholder": "0987654321",
+    "email": "Địa chỉ Email",
+    "emailPlaceholder": "example@email.com",
+    "address": "Địa chỉ giao hàng",
+    "addressPlaceholder": "Số 123 Đường ABC, Quận XYZ, TP. HCM",
+    "paymentMethod": "Phương thức thanh toán",
+    "cod": "Thanh toán khi nhận hàng (COD)",
+    "bank": "Chuyển khoản ngân hàng (Qua mã QR)",
+    "summaryTitle": "Tóm tắt đơn hàng",
+    "shippingFee": "Phí vận chuyển",
+    "free": "Miễn phí",
+    "total": "Tổng thanh toán",
+    "placeOrder": "Xác nhận đặt hàng",
+    "placingOrder": "Đang xử lý đặt hàng...",
+    "successTitle": "Đặt hàng thành công!",
+    "successDesc": "Cảm ơn bạn đã lựa chọn PE. Đơn hàng của bạn đã được ghi nhận thành công trên hệ thống.",
+    "orderIdLabel": "Mã đơn hàng:",
+    "bankInfo": {
+      "title": "Thông tin chuyển khoản",
+      "bankName": "Ngân hàng: MB Bank",
+      "accountName": "Chủ TK: CONG TY PE TECH",
+      "accountNumber": "Số TK: 1234567890",
+      "description": "Nội dung: PE ORDER {id}"
+    }
+  }
+}

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
+import ScrollReveal from '@/components/ui/scroll-reveal';
 import SpecGrid from './spec-grid';
 import styles from './style.module.css';
 
@@ -23,17 +24,23 @@ export default function DiscoverySection() {
     <section id="specs" className={styles.section}>
       <div className={styles.container}>
         {/* Sub-section 1: Feature Tabs charts */}
-        <LazyRender minHeight={240} fallback={<div className={styles.loadingPlaceholder}>Loading details...</div>}>
-          <FeatureTabs />
-        </LazyRender>
+        <ScrollReveal animation="revealUp" duration={700}>
+          <LazyRender minHeight={240} fallback={<div className={styles.loadingPlaceholder}>Loading details...</div>}>
+            <FeatureTabs />
+          </LazyRender>
+        </ScrollReveal>
 
-        {/* Sub-section 2: Technical specifications details */}
-        <SpecGrid />
+        {/* Sub-section 2: Technical specifications — stagger each spec card via CSS */}
+        <ScrollReveal animation="revealUp" delay={100} duration={700}>
+          <SpecGrid />
+        </ScrollReveal>
 
         {/* Sub-section 3 & 4: Integrated Color Swatches & 360 Viewer */}
-        <LazyRender minHeight={360} fallback={<div className={styles.loadingPlaceholder}>Loading viewer...</div>}>
-          <ProductViewer360 />
-        </LazyRender>
+        <ScrollReveal animation="scaleIn" delay={150} duration={800}>
+          <LazyRender minHeight={360} fallback={<div className={styles.loadingPlaceholder}>Loading viewer...</div>}>
+            <ProductViewer360 />
+          </LazyRender>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -154,3 +154,48 @@
   --border-color: rgba(143, 227, 192, 0.22);
   --bg-card-hover: rgba(143, 227, 192, 0.07);
 }
+
+.actionIconBtn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.actionIconBtn:hover {
+  background-color: var(--bg-card-hover);
+}
+
+.badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: #e54b4b;
+  color: #ffffff;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 9px;
+  font-weight: bold;
+  min-width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
+  border: 1px solid var(--bg-primary);
+}
+
+:global(.dark) .badge {
+  background-color: var(--color-mint);
+  color: #0e1512;
+  border: 1px solid #121815;
+}

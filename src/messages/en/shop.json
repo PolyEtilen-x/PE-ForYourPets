@@ -1,0 +1,59 @@
+{
+  "eyebrow": "PE Ecosystem",
+  "title": "Pet Device Store",
+  "subtitle": "Equip premium smart tech solutions to care for and protect your four-legged companion.",
+  "loading": "Loading product list...",
+  "error": "Could not load products. Please try again later.",
+  "quickView": "View details",
+  "addToCart": "Add to cart",
+  "addedToCart": "Added to cart!",
+  "addToCartFull": "Add to cart",
+  "recentlyViewed": "Recently viewed products",
+  "featuredSpecs": "Featured specs:",
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty.",
+    "continue": "Continue exploring",
+    "subtotal": "Subtotal",
+    "taxNote": "Taxes and shipping calculated at checkout.",
+    "checkout": "Checkout",
+    "checkoutAlert": "Checkout functionality is being integrated!"
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "empty": "Your wishlist is empty.",
+    "continue": "Find favorite products",
+    "moveToCart": "Add to cart"
+  },
+  "checkoutPage": {
+    "title": "Checkout",
+    "shippingTitle": "Shipping Information",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "John Doe",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+84 987 654 321",
+    "email": "Email Address",
+    "emailPlaceholder": "john@example.com",
+    "address": "Shipping Address",
+    "addressPlaceholder": "123 Street Name, City, Country",
+    "paymentMethod": "Payment Method",
+    "cod": "Cash on Delivery (COD)",
+    "bank": "Bank Transfer (via QR Code)",
+    "summaryTitle": "Order Summary",
+    "shippingFee": "Shipping Fee",
+    "free": "Free",
+    "total": "Grand Total",
+    "placeOrder": "Place Order",
+    "placingOrder": "Processing order...",
+    "successTitle": "Order Placed Successfully!",
+    "successDesc": "Thank you for choosing PE. Your order has been recorded in our system.",
+    "orderIdLabel": "Order ID:",
+    "bankInfo": {
+      "title": "Transfer Details",
+      "bankName": "Bank: Military Bank (MB)",
+      "accountName": "Account Name: PE TECH COMPANY",
+      "accountNumber": "Account Number: 1234567890",
+      "description": "Description: PE ORDER {id}"
+    }
+  }
+}

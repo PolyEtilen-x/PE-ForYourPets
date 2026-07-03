@@ -55,7 +55,10 @@
     "options": {
       "sand": "Sand Beige",
       "sage": "Sage Green",
-      "charcoal": "Charcoal"
+      "charcoal": "Charcoal",
+      "orange": "Cosmic Orange",
+      "blue": "Deep Blue",
+      "silver": "Silver"
     }
   },
   "viewer": {

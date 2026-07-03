@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import ScrollReveal from '@/components/ui/scroll-reveal';
 import styles from './style.module.css';
 
 const TENSION_PHOTOS = [
@@ -14,42 +15,6 @@ const TENSION_PHOTOS = [
 
 export default function TensionSection() {
   const t = useTranslations('tension');
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
-
-  const onMouseDown = (e: React.MouseEvent) => {
-    if (!scrollRef.current) return;
-    isDragging.current = true;
-    startX.current = e.pageX - scrollRef.current.offsetLeft;
-    scrollLeft.current = scrollRef.current.scrollLeft;
-    
-    // Disable snapping and transition animation while dragging for absolute smoothness
-    scrollRef.current.style.scrollSnapType = 'none';
-    scrollRef.current.style.scrollBehavior = 'auto';
-    scrollRef.current.style.cursor = 'grabbing';
-    scrollRef.current.style.userSelect = 'none';
-  };
-
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current || !scrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5; // Drag speed multiplier
-    scrollRef.current.scrollLeft = scrollLeft.current - walk;
-  };
-
-  const onMouseUpOrLeave = () => {
-    if (!scrollRef.current) return;
-    isDragging.current = false;
-    
-    // Restore snap behaviour to automatically slide cleanly into place
-    scrollRef.current.style.scrollSnapType = 'x mandatory';
-    scrollRef.current.style.scrollBehavior = 'smooth';
-    scrollRef.current.style.cursor = 'grab';
-    scrollRef.current.style.removeProperty('user-select');
-  };
 
   // We have 4 cards configured in JSON messages
   const cards = [0, 1, 2, 3].map((idx) => ({
@@ -62,54 +27,47 @@ export default function TensionSection() {
     accentClass: idx % 2 === 1 ? styles.accentOrange : styles.accentMint,
   }));
 
+  // Double the cards to create a seamless infinite loop marquee
+  const marqueeCards = [...cards, ...cards];
+
   return (
     <section id="features" className={styles.section}>
-      <p className={styles.label}>{t('sectionLabel')}</p>
+      <ScrollReveal animation="slideInLeft" duration={600}>
+        <p className={styles.label}>{t('sectionLabel')}</p>
+      </ScrollReveal>
 
-      <div
-        ref={scrollRef}
-        className={styles.scrollContainer}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUpOrLeave}
-        onMouseLeave={onMouseUpOrLeave}
-        style={{ cursor: 'grab' }}
-      >
-        {cards.map((card, i) => (
-          <div key={i} className={styles.card}>
-            {/* Image header */}
-            <div className={styles.imageWrapper}>
-              <Image
-                src={card.photo}
-                alt={card.alt}
-                fill
-                sizes="(max-width: 768px) 82vw, 480px"
-                className={styles.image}
-              />
-              <div className={styles.imageOverlay} />
-              <span className={styles.number}>
-                {String(i + 1).padStart(2, '0')} / 04
-              </span>
-            </div>
+      <div className={styles.marqueeContainer}>
+        <div className={styles.marqueeTrack}>
+          {marqueeCards.map((card, i) => (
+            <div key={i} className={styles.card}>
+              {/* Image header */}
+              <div className={styles.imageWrapper}>
+                <Image
+                  src={card.photo}
+                  alt={card.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 480px"
+                  className={styles.image}
+                  priority={i < 2}
+                />
+                <div className={styles.imageOverlay} />
+                <span className={styles.number}>/ 0{(i % 4) + 1}</span>
+              </div>
 
-            {/* Text details */}
-            <div className={styles.details}>
-              <p className={styles.statement}>
-                {card.statement.split(card.accent).map((part, j, arr) => (
-                  <span key={j}>
-                    {part}
-                    {j < arr.length - 1 && (
-                      <span className={`${styles.accentWord} ${card.accentClass}`}>
-                        {card.accent}
-                      </span>
-                    )}
+              {/* Text details */}
+              <div className={styles.details}>
+                <h3 className={styles.statement}>
+                  {card.statement.split(card.accent)[0]}
+                  <span className={`${styles.accentWord} ${card.accentClass}`}>
+                    {card.accent}
                   </span>
-                ))}
-              </p>
-              <p className={styles.subText}>{card.sub}</p>
+                  {card.statement.split(card.accent)[1]}
+                </h3>
+                <p className={styles.subText}>{card.sub}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
