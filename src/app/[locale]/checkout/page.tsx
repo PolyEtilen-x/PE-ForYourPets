@@ -83,6 +83,7 @@ export default function CheckoutPage() {
           <div className={styles.headerContainer}>
             <Link href={`/${locale}`} className={styles.logo}>
               <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+              <span className={styles.logoText}>PE</span>
             </Link>
           </div>
         </header>
@@ -140,6 +141,7 @@ export default function CheckoutPage() {
         <div className={styles.headerContainer}>
           <Link href={`/${locale}`} className={styles.logo}>
             <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+            <span className={styles.logoText}>PE</span>
           </Link>
           <Link href={`/${locale}`} className={styles.backLink}>
             <ArrowLeft size={16} />

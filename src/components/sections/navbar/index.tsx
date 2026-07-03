@@ -51,6 +51,7 @@ export default function NavBar() {
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${unscrolledDark}`}>
       <Link href="/" className={styles.logoLink} aria-label="PE Home">
         <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+        <span className={styles.logo}>PE - For Your Pets</span>
       </Link>
 
       <div className={`${styles.menu} ${mobileMenuOpen ? styles.mobileOpen : ''}`}>

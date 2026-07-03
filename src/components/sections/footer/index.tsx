@@ -14,6 +14,7 @@ export default function FooterSection() {
         <div className={styles.topRow}>
           <Link href="/" className={styles.logoLink} aria-label="PE Home">
             <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+            <span className={styles.logo}>PE</span>
           </Link>
           <div className={styles.links}>
             {linksKeys.map((key) => (
