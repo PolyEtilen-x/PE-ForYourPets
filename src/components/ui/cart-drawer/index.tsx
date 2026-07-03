@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { useCartStore } from '@/stores/useCartStore';
@@ -68,8 +69,14 @@ export default function CartDrawer() {
               {items.map((item) => (
                 <div key={item.product.id} className={styles.itemCard}>
                   <div className={styles.imageWrapper}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={item.product.image} alt={item.product.name} className={styles.image} />
+                    <Image
+                      src={item.product.image}
+                      alt={item.product.name}
+                      width={80}
+                      height={80}
+                      style={{ objectFit: 'cover' }}
+                      className={styles.image}
+                    />
                   </div>
                   <div className={styles.itemDetails}>
                     <h3 className={styles.itemName}>{item.product.name}</h3>

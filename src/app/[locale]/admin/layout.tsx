@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useParams, useRouter, usePathname } from 'next/navigation';
 import { useAdminAuthStore } from '@/stores/useAdminAuthStore';
 import { useTranslations } from 'next-intl';
@@ -102,7 +103,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
         <div className={styles.sidebarHeader}>
           <Link href={`/${locale}`} className={styles.logoLink}>
-            <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+            <Image
+              src="/logo_noname.png"
+              alt="PE Logo"
+              width={32}
+              height={32}
+              className={styles.logoImg}
+            />
             <span className={styles.logoText}>PE Admin</span>
           </Link>
         </div>

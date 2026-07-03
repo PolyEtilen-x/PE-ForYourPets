@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import styles from './style.module.css';
@@ -13,7 +14,13 @@ export default function FooterSection() {
       <div className={styles.container}>
         <div className={styles.topRow}>
           <Link href="/" className={styles.logoLink} aria-label="PE Home">
-            <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+            <Image
+              src="/logo_noname.png"
+              alt="PE Logo"
+              width={32}
+              height={32}
+              className={styles.logoImg}
+            />
             <span className={styles.logo}>PE</span>
           </Link>
           <div className={styles.links}>

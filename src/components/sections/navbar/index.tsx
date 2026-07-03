@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useThemeStore } from '@/stores/useThemeStore';
 import LocaleSwitcher from '@/components/ui/locale-switcher';
@@ -50,7 +51,14 @@ export default function NavBar() {
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${unscrolledDark}`}>
       <Link href="/" className={styles.logoLink} aria-label="PE Home">
-        <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+        <Image
+          src="/logo_noname.png"
+          alt="PE Logo"
+          width={36}
+          height={36}
+          priority
+          className={styles.logoImg}
+        />
         <span className={styles.logo}>PE - For Your Pets</span>
       </Link>
 

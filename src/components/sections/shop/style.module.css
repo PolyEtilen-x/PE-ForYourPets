@@ -575,6 +575,7 @@
 }
 
 .modalImageWrapper {
+  position: relative;
   border-radius: 12px;
   overflow: hidden;
   background-color: #f7f9f8;

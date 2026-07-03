@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { useCartStore } from '@/stores/useCartStore';
@@ -82,7 +83,14 @@ export default function CheckoutPage() {
         <header className={styles.header}>
           <div className={styles.headerContainer}>
             <Link href={`/${locale}`} className={styles.logo}>
-              <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+              <Image
+                src="/logo_noname.png"
+                alt="PE Logo"
+                width={32}
+                height={32}
+                priority
+                className={styles.logoImg}
+              />
               <span className={styles.logoText}>PE</span>
             </Link>
           </div>
@@ -140,7 +148,14 @@ export default function CheckoutPage() {
       <header className={styles.header}>
         <div className={styles.headerContainer}>
           <Link href={`/${locale}`} className={styles.logo}>
-            <img src="/logo_noname.png" alt="PE Logo" className={styles.logoImg} />
+            <Image
+              src="/logo_noname.png"
+              alt="PE Logo"
+              width={32}
+              height={32}
+              priority
+              className={styles.logoImg}
+            />
             <span className={styles.logoText}>PE</span>
           </Link>
           <Link href={`/${locale}`} className={styles.backLink}>
@@ -273,8 +288,13 @@ export default function CheckoutPage() {
                   items.map((item) => (
                     <div key={item.product.id} className={styles.summaryItem}>
                       <div className={styles.summaryImageWrapper}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={item.product.image} alt={item.product.name} />
+                        <Image
+                          src={item.product.image}
+                          alt={item.product.name}
+                          width={56}
+                          height={56}
+                          style={{ objectFit: 'cover' }}
+                        />
                       </div>
                       <div className={styles.summaryDetails}>
                         <h4 className={styles.summaryItemName}>{item.product.name}</h4>
