@@ -30,6 +30,19 @@ export interface CreateOrderResponse {
   order?: PlacedOrderData;
 }
 
+interface BackendOrderResponse {
+  id: string;
+  customerName: string;
+  customerPhone: string;
+  customerEmail: string;
+  shippingAddress: string;
+  paymentMethod: 'cod' | 'bank_transfer';
+  totalAmount: number;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export function useOrderMutation() {
   return useMutation({
     mutationFn: async (orderData: CreateOrderInput): Promise<CreateOrderResponse> => {
@@ -48,7 +61,7 @@ export function useOrderMutation() {
         })),
       };
 
-      const res = await apiClient.post<any>('/orders', backendPayload);
+      const res = await apiClient.post<BackendOrderResponse>('/orders', backendPayload);
       const backendOrder = res.data;
 
       return {
