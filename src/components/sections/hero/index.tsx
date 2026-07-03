@@ -58,7 +58,9 @@ export default function HeroSection() {
           fill
           priority
           sizes="100vw"
+          quality={85}
           className={styles.bgImage}
+          fetchPriority="high"
         />
       </div>
 

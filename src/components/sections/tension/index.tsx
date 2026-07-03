@@ -46,9 +46,9 @@ export default function TensionSection() {
                   src={card.photo}
                   alt={card.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, 480px"
+                  sizes="(max-width: 768px) 82vw, 480px"
                   className={styles.image}
-                  priority={i < 2}
+                  loading="lazy"
                 />
                 <div className={styles.imageOverlay} />
                 <span className={styles.number}>/ 0{(i % 4) + 1}</span>
@@ -56,13 +56,13 @@ export default function TensionSection() {
 
               {/* Text details */}
               <div className={styles.details}>
-                <h3 className={styles.statement}>
+                <p className={styles.statement}>
                   {card.statement.split(card.accent)[0]}
                   <span className={`${styles.accentWord} ${card.accentClass}`}>
                     {card.accent}
                   </span>
                   {card.statement.split(card.accent)[1]}
-                </h3>
+                </p>
                 <p className={styles.subText}>{card.sub}</p>
               </div>
             </div>
