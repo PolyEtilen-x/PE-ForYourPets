@@ -34,7 +34,20 @@ export default function ShopSection() {
     return () => cancelAnimationFrame(animFrame);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted || isLoading) {
+    return (
+      <section id="order" className={styles.shopSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.eyebrow}>{t('eyebrow')}</span>
+            <h2 className={styles.title}>{t('title')}</h2>
+            <p className={styles.subtitle}>{t('subtitle')}</p>
+          </div>
+          <SkeletonProductGrid count={4} />
+        </div>
+      </section>
+    );
+  }
 
   const handleOpenDetails = (product: Product) => {
     setActiveDetailsProduct(product);
@@ -83,10 +96,7 @@ export default function ShopSection() {
           </div>
         </ScrollReveal>
 
-        {isLoading ? (
-          /* Skeleton grid — same layout as real grid, no CLS */
-          <SkeletonProductGrid count={4} />
-        ) : error ? (
+        {error ? (
           <ScrollReveal animation="revealFade">
             <div className={styles.errorWrapper}>
               <p>{t('error')}</p>
