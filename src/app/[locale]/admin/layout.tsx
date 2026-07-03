@@ -58,9 +58,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return <>{children}</>;
   }
 
-  // If not authenticated, render empty space during redirect
+  // If not authenticated and not on login page, render children (which handles redirect)
   if (!isAuthenticated) {
-    return null;
+    return <>{children}</>;
   }
 
   const handleLogout = () => {

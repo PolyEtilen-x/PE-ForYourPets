@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, Be_Vietnam_Pro, JetBrains_Mono } from 'next/font/google';
+import { Manrope, Inter, JetBrains_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -11,16 +11,16 @@ import '@/styles/globals.css';
 import '@/styles/typography.css';
 import '@/styles/animations.css';
 
-const heading = Playfair_Display({
-  subsets: ['latin', 'vietnamese'],
-  weight: ['600', '700', '900'],
+const heading = Manrope({
+  subsets: ['latin'],
+  weight: ['500', '600', '700', '800'],
   variable: '--font-heading',
   display: 'swap',
 });
 
-const body = Be_Vietnam_Pro({
+const body = Inter({
   subsets: ['latin', 'vietnamese'],
-  weight: ['400', '500', '600'],
+  weight: ['300', '400', '500'],
   variable: '--font-body',
   display: 'swap',
 });
