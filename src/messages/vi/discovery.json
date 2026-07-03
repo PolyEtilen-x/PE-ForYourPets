@@ -1,5 +1,5 @@
 {
-  "heading": "Những gì CLEO ",
+  "heading": "Những gì PE ",
   "headingAccent": "nhìn thấy",
   "tabs": {
     "activity": {
@@ -42,6 +42,10 @@
       {
         "name": "Pin",
         "items": ["Pin tích hợp 3200 mAh", "~7 ngày / lần sạc", "Sạc không dây Qi 10W"]
+      },
+      {
+        "name": "Ống kính & Độ nét",
+        "items": ["Độ phân giải 2K Ultra-HD (4MP)", "Khẩu độ F/2.0 tối ưu thu sáng", "Chống ngược sáng WDR tự động"]
       }
     ]
   },

@@ -1,0 +1,59 @@
+:root {
+  /* Hex Palette Colors */
+  --color-mint: #8FE3C0;
+  --color-orange: #F2A65A;
+  --color-moss: #0E1512;
+  --color-dark-bg: #0A120E;
+  --color-card-dark: #111A14;
+  --color-section-dark: #090E0C;
+  --color-light-bg: #FAF6F0;
+  --color-section-light: #EDE8E0;
+  --color-footer: #060B09;
+
+  /* Spacing Tokens */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --space-huge: 80px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Light Theme Mapping (Default) */
+  --bg-primary: var(--color-light-bg);
+  --bg-section: var(--color-section-light);
+  --bg-card: #ffffff;
+  --bg-card-hover: rgba(14, 21, 18, 0.05);
+  --text-primary: var(--color-moss);
+  --text-secondary: rgba(14, 21, 18, 0.58);
+  --text-muted: rgba(14, 21, 18, 0.46);
+  --border-color: rgba(14, 21, 18, 0.08);
+  --border-color-glow: rgba(90, 126, 94, 0.28);
+  --accent-glow: rgba(122, 158, 126, 0.1);
+  --accent-pill-bg: rgba(90, 126, 94, 0.06);
+  --accent-pill-text: #5A7E5E;
+  --logo-color: var(--color-moss);
+}
+
+/* Dark Theme Mapping */
+:root.dark {
+  --bg-primary: var(--color-moss);
+  --bg-section: var(--color-section-dark);
+  --bg-card: var(--color-card-dark);
+  --bg-card-hover: rgba(143, 227, 192, 0.07);
+  --text-primary: #E8F0EC;
+  --text-secondary: rgba(232, 240, 236, 0.58);
+  --text-muted: rgba(232, 240, 236, 0.46);
+  --border-color: rgba(143, 227, 192, 0.1);
+  --border-color-glow: rgba(143, 227, 192, 0.22);
+  --accent-glow: rgba(143, 227, 192, 0.1);
+  --accent-pill-bg: rgba(143, 227, 192, 0.05);
+  --accent-pill-text: var(--color-mint);
+  --logo-color: var(--color-mint);
+}

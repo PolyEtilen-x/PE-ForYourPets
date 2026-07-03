@@ -16,8 +16,14 @@
     {
       "statement": "Nhưng có điều gì đó đang lặng lẽ theo dõi — và quan tâm.",
       "accent": "lặng lẽ theo dõi",
-      "sub": "CLEO nhìn thấy những thay đổi nhỏ mà bạn không kịp chú ý.",
+      "sub": "PE nhìn thấy những thay đổi nhỏ mà bạn không kịp chú ý.",
       "alt": "Hình bóng mèo ngược sáng bên khung cửa sổ rực rỡ"
+    },
+    {
+      "statement": "Chu kỳ ngủ thất thường — tín hiệu cảnh báo.",
+      "accent": "tín hiệu cảnh báo",
+      "sub": "PE tự động giám sát giấc ngủ, phát hiện ngay khi giấc ngủ bị gián đoạn liên tục.",
+      "alt": "Chú mèo nằm cuộn tròn ngủ dưới ánh đèn ấm áp"
     }
   ]
 }

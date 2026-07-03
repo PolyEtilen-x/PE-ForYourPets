@@ -1,0 +1,36 @@
+.section {
+  background: var(--bg-section);
+  padding: 60px 16px;
+  width: 100%;
+  transition: background-color 0.35s;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 96px 24px;
+  }
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    gap: 100px;
+  }
+}
+
+.loadingPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+}

@@ -1,0 +1,14 @@
+/* Typography Configurations mapping fonts to CSS vars */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-fraunces), serif;
+  font-weight: 300;
+}
+
+body, p, span, a, button, input, select, textarea {
+  font-family: var(--font-inter), sans-serif;
+}
+
+code, pre, .mono-text {
+  font-family: var(--font-jetbrains), monospace;
+}

@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
+import Providers from './providers';
 import '@/styles/tokens.css';
 import '@/styles/globals.css';
 import '@/styles/typography.css';
@@ -11,7 +12,7 @@ import '@/styles/animations.css';
 
 const fraunces = Fraunces({
   subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500'],
+  weight: ['300', '400'],
   variable: '--font-fraunces',
   display: 'swap',
 });
@@ -25,25 +26,29 @@ const inter = Inter({
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  weight: ['400'],
   variable: '--font-jetbrains',
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: {
-    template: '%s | PE-ForYourPets',
-    default: 'CLEO - AI-Powered Cat Health Camera',
-  },
-  description: 'AI camera giám sát sức khỏe thú cưng 24/7. Biết sớm, yêu thương lâu dài.',
-  alternates: {
-    canonical: '/',
-    languages: {
-      vi: '/vi',
-      en: '/en',
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    metadataBase: new URL('https://pe-for-your-pets.vercel.app'),
+    title: {
+      template: '%s | PE-ForYourPets',
+      default: 'PE - AI-Powered Cat Health Camera',
     },
-  },
-};
+    description: 'AI camera giám sát sức khỏe thú cưng 24/7. Biết sớm, yêu thương lâu dài.',
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        vi: '/vi',
+        en: '/en',
+      },
+    },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -75,7 +80,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     >
       <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>
     </html>

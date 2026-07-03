@@ -16,8 +16,14 @@
     {
       "statement": "But something is watching silently — and caring.",
       "accent": "watching silently",
-      "sub": "CLEO detects small behavioral shifts that you might miss.",
+      "sub": "PE detects small behavioral shifts that you might miss.",
       "alt": "Cat silhouetted against a bright window"
+    },
+    {
+      "statement": "Irregular sleep patterns — warning indicators.",
+      "accent": "warning indicators",
+      "sub": "PE tracks sleep cycles, highlighting when rest is persistently disrupted.",
+      "alt": "A cat sleeping curled up under warm light"
     }
   ]
 }

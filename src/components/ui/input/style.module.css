@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 13px 18px;
+  border-radius: var(--radius-md);
+  outline: none;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+  color: var(--text-primary);
+  background: var(--accent-pill-bg);
+  border: 1px solid var(--border-color);
+  transition: all 0.22s ease-in-out;
+  min-height: 44px;
+}
+
+.input:focus {
+  border-color: var(--border-color-glow);
+  box-shadow: 0 0 0 3px rgba(143, 227, 192, 0.12);
+}
+
+.inputError {
+  border-color: #d4183d;
+}
+
+.errorText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  color: #d4183d;
+  margin-left: 4px;
+}
