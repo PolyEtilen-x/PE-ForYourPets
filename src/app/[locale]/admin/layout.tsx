@@ -29,17 +29,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [mounted, setMounted] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const isLoginPage = pathname === `/${locale}/admin/login`;
+
   useEffect(() => {
     const handle = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(handle);
   }, []);
 
-  // Guard: if not authenticated, redirect to login
+  // Guard: if not authenticated and not on login page, redirect to login
   useEffect(() => {
-    if (mounted && !isAuthenticated) {
+    if (mounted && !isAuthenticated && !isLoginPage) {
       router.push(`/${locale}/admin/login`);
     }
-  }, [mounted, isAuthenticated, locale, router]);
+  }, [mounted, isAuthenticated, isLoginPage, locale, router]);
 
   // Close sidebar on path changes (mobile)
   useEffect(() => {
@@ -51,9 +53,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return null; // Prevent hydration mismatch
   }
 
-  // If not authenticated, render empty space during redirect
+  // If on login page, render children directly without admin shell wrapper
+  if (isLoginPage) {
+    return <>{children}</>;
+  }
+
+  // If not authenticated and not on login page, render children (which handles redirect)
   if (!isAuthenticated) {
-    return null;
+    return <>{children}</>;
   }
 
   const handleLogout = () => {
