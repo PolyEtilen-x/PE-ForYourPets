@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-import ProductCamera from '@/components/ui/product-camera';
+import { ProductCameraSvg as ProductCamera } from '@/components/ui/product-camera';
 import styles from './style.module.css';
 
 export default function SpecGrid() {

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Manrope, Inter, JetBrains_Mono } from 'next/font/google';
+import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -11,17 +11,17 @@ import '@/styles/globals.css';
 import '@/styles/typography.css';
 import '@/styles/animations.css';
 
-const heading = Manrope({
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  variable: '--font-heading',
+const fraunces = Fraunces({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['300', '400'],
+  variable: '--font-fraunces',
   display: 'swap',
 });
 
-const body = Inter({
+const inter = Inter({
   subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500'],
-  variable: '--font-body',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -77,7 +77,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   return (
     <html
       lang={locale}
-      className={`${heading.variable} ${body.variable} ${jetbrainsMono.variable}`}
+      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         {/* Preload the hero LCP image so browser discovers it early */}

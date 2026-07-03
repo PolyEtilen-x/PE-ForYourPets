@@ -38,12 +38,10 @@
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: scrollContinuous 32s linear infinite;
+  animation: scrollContinuous 12s linear infinite;
 }
 
-.marqueeTrack:hover {
-  animation-play-state: paused;
-}
+/* BỎ hover pause — xóa .marqueeTrack:hover block */
 
 @keyframes scrollContinuous {
   0% {
@@ -57,7 +55,7 @@
 @media (min-width: 768px) {
   .marqueeTrack {
     gap: 24px;
-    animation-duration: 45s;
+    animation-duration: 18s;
   }
 }
 
@@ -126,26 +124,25 @@
   margin: 0;
 }
 
+/* accentWord: bold + màu thay vì border-bottom (dễ đọc hơn, nhìn sạch hơn) */
 .accentWord {
-  padding-bottom: 1px;
+  font-weight: 700;
 }
 
 .accentMint {
-  color: var(--text-primary);
-  border-bottom: 2px solid var(--color-mint);
+  color: var(--color-mint);
 }
 
 :global(.dark) .accentMint {
-  color: #fff;
+  color: #6edab0;
 }
 
 .accentOrange {
-  color: var(--text-primary);
-  border-bottom: 2px solid var(--color-orange);
+  color: var(--color-orange);
 }
 
 :global(.dark) .accentOrange {
-  color: #fff;
+  color: #f09a5a;
 }
 
 .subText {
