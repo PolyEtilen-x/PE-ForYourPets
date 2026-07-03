@@ -1,44 +1,79 @@
-/*
- * scroll-reveal/style.module.css
- *
- * CSS Module — keyframes MUST be defined locally.
- * CSS Modules hash class names but NOT @keyframe names used inside
- * animation: shorthand values. However, to guarantee availability
- * regardless of global stylesheet load order, we define them here.
- */
-
-/* ── Local Keyframes ── */
-
 @keyframes srRevealUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes srRevealFade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes srSlideInLeft {
-  from { opacity: 0; transform: translateX(-32px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes srSlideInRight {
-  from { opacity: 0; transform: translateX(32px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes srScaleIn {
-  from { opacity: 0; transform: scale(0.92) translateY(20px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 @keyframes srSpringPop {
-  0%   { transform: scale(0.8); opacity: 0; }
-  60%  { transform: scale(1.08); opacity: 1; }
-  80%  { transform: scale(0.96); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  80% {
+    transform: scale(0.96);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* ── Base ── */
@@ -62,6 +97,7 @@
 .revealUp.hidden {
   transform: translateY(40px);
 }
+
 .revealUp.revealed {
   animation: srRevealUp var(--reveal-duration, 700ms) cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -69,6 +105,7 @@
 .revealFade.hidden {
   opacity: 0;
 }
+
 .revealFade.revealed {
   animation: srRevealFade var(--reveal-duration, 700ms) cubic-bezier(0.25, 1, 0.5, 1) both;
 }
@@ -76,6 +113,7 @@
 .slideInLeft.hidden {
   transform: translateX(-32px);
 }
+
 .slideInLeft.revealed {
   animation: srSlideInLeft var(--reveal-duration, 700ms) cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -83,6 +121,7 @@
 .slideInRight.hidden {
   transform: translateX(32px);
 }
+
 .slideInRight.revealed {
   animation: srSlideInRight var(--reveal-duration, 700ms) cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -90,6 +129,7 @@
 .scaleIn.hidden {
   transform: scale(0.92) translateY(20px);
 }
+
 .scaleIn.revealed {
   animation: srScaleIn var(--reveal-duration, 700ms) cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -97,12 +137,14 @@
 .springPop.hidden {
   transform: scale(0.8);
 }
+
 .springPop.revealed {
   animation: srSpringPop var(--reveal-duration, 600ms) cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
+
   .base,
   .hidden,
   .revealed,

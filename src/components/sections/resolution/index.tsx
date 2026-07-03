@@ -45,13 +45,10 @@ export default function ResolutionSection() {
         setToastMessage(t('form.successBody'));
         reset();
       },
-      onError: () => {
-        // Fallback for standalone frontend environment when API is not running:
-        // Mock success to keep prototype functional for users
-        setToastType('success');
-        setToastMessage(t('form.successBody'));
-        useNewsletterStore.getState().setSubmitted(data.email);
-        reset();
+      onError: (error: unknown) => {
+        setToastType('error');
+        const apiErrorMsg = (error as { response?: { data?: { message?: string } } }).response?.data?.message;
+        setToastMessage(apiErrorMsg || tCommon('errors.generic'));
       },
     });
   };

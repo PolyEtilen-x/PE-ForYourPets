@@ -5,6 +5,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import Providers from './providers';
+import TrackingAlerts from '@/components/ui/tracking-alerts';
 import '@/styles/tokens.css';
 import '@/styles/globals.css';
 import '@/styles/typography.css';
@@ -96,7 +97,10 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <Providers>{children}</Providers>
+          <Providers>
+            {children}
+            <TrackingAlerts />
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>
