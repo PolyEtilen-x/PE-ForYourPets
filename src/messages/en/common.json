@@ -8,5 +8,87 @@
   "errors": {
     "generic": "Something went wrong. Please try again later.",
     "invalidEmail": "Invalid email address format."
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Login",
+      "subtitle": "PE - For Your Pets Management System",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Login",
+      "submitting": "Logging in..."
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "orders": "Orders",
+      "newsletters": "Subscribers",
+      "logout": "Logout"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "revenue": "Revenue (Delivered orders)",
+      "totalOrders": "Total Orders",
+      "pendingOrders": "Pending Orders",
+      "events": "AI Camera Events",
+      "subscribers": "Newsletter Subs",
+      "recentOrders": "Recent Orders"
+    },
+    "products": {
+      "title": "Product Management",
+      "addBtn": "Add New Product",
+      "editTitle": "Edit Product",
+      "addTitle": "Add Product",
+      "table": {
+        "image": "Image",
+        "name": "Name",
+        "price": "Price",
+        "comparePrice": "Compare Price",
+        "stock": "Stock",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "statusActive": "Active",
+      "statusInactive": "Hidden",
+      "form": {
+        "slug": "Slug/URL Path",
+        "name": "Product Name",
+        "price": "Selling Price",
+        "comparePrice": "Original Price (optional)",
+        "stock": "Stock Quantity",
+        "image": "Image URL",
+        "desc": "Description",
+        "cancel": "Cancel",
+        "save": "Save"
+      }
+    },
+    "orders": {
+      "title": "Order Management",
+      "table": {
+        "customer": "Customer",
+        "phone": "Phone Number",
+        "address": "Shipping Address",
+        "payment": "Payment",
+        "total": "Total Amount",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "status": {
+        "pending": "Pending",
+        "confirmed": "Confirmed",
+        "shipping": "Shipping",
+        "delivered": "Delivered",
+        "cancelled": "Cancelled"
+      }
+    },
+    "newsletters": {
+      "title": "Newsletter Subscribers",
+      "table": {
+        "email": "Email Address",
+        "date": "Subscribed Date",
+        "actions": "Actions"
+      },
+      "deleteConfirm": "Are you sure you want to unsubscribe this email?"
+    }
   }
 }

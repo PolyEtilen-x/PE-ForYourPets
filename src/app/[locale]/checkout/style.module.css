@@ -30,6 +30,7 @@
 .logo {
   display: flex;
   align-items: center;
+  gap: 10px;
   text-decoration: none;
 }
 
@@ -38,6 +39,13 @@
   width: auto;
   object-fit: contain;
   display: block;
+}
+
+.logoText {
+  font-family: var(--font-fraunces), serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
 .backLink {

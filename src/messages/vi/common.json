@@ -8,5 +8,87 @@
   "errors": {
     "generic": "Đã có lỗi xảy ra. Vui lòng thử lại sau.",
     "invalidEmail": "Email không đúng định dạng."
+  },
+  "admin": {
+    "login": {
+      "title": "Đăng Nhập Quản Trị",
+      "subtitle": "Hệ thống quản lý PE - For Your Pets",
+      "username": "Tên đăng nhập",
+      "password": "Mật khẩu",
+      "submit": "Đăng nhập",
+      "submitting": "Đang đăng nhập..."
+    },
+    "sidebar": {
+      "dashboard": "Tổng quan",
+      "products": "Sản phẩm",
+      "orders": "Đơn hàng",
+      "newsletters": "Người đăng ký",
+      "logout": "Đăng xuất"
+    },
+    "dashboard": {
+      "title": "Bảng Điều Khiển Quản Trị",
+      "revenue": "Doanh thu (Đơn đã giao)",
+      "totalOrders": "Tổng số đơn hàng",
+      "pendingOrders": "Đơn chờ xử lý",
+      "events": "Sự kiện Camera AI",
+      "subscribers": "Người nhận tin",
+      "recentOrders": "Đơn hàng gần đây"
+    },
+    "products": {
+      "title": "Quản Lý Sản Phẩm",
+      "addBtn": "Thêm sản phẩm mới",
+      "editTitle": "Chỉnh sửa sản phẩm",
+      "addTitle": "Thêm sản phẩm",
+      "table": {
+        "image": "Hình ảnh",
+        "name": "Tên sản phẩm",
+        "price": "Giá bán",
+        "comparePrice": "Giá gốc",
+        "stock": "Kho",
+        "status": "Trạng thái",
+        "actions": "Thao tác"
+      },
+      "statusActive": "Đang bán",
+      "statusInactive": "Đã ẩn",
+      "form": {
+        "slug": "Slug đường dẫn",
+        "name": "Tên sản phẩm",
+        "price": "Giá bán",
+        "comparePrice": "Giá gốc (optional)",
+        "stock": "Số lượng kho",
+        "image": "URL hình ảnh",
+        "desc": "Mô tả",
+        "cancel": "Hủy",
+        "save": "Lưu"
+      }
+    },
+    "orders": {
+      "title": "Quản Lý Đơn Hàng",
+      "table": {
+        "customer": "Khách hàng",
+        "phone": "Số điện thoại",
+        "address": "Địa chỉ",
+        "payment": "Thanh toán",
+        "total": "Tổng tiền",
+        "status": "Trạng thái",
+        "actions": "Hành động"
+      },
+      "status": {
+        "pending": "Chờ xác nhận",
+        "confirmed": "Đã xác nhận",
+        "shipping": "Đang giao",
+        "delivered": "Đã giao",
+        "cancelled": "Đã hủy"
+      }
+    },
+    "newsletters": {
+      "title": "Danh Sách Email Đăng Ký",
+      "table": {
+        "email": "Email",
+        "date": "Ngày đăng ký",
+        "actions": "Thao tác"
+      },
+      "deleteConfirm": "Bạn có chắc chắn muốn hủy đăng ký email này?"
+    }
   }
 }
