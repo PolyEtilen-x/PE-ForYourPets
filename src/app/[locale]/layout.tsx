@@ -19,7 +19,7 @@ const fraunces = Fraunces({
 
 const inter = Inter({
   subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500'],
   variable: '--font-inter',
   display: 'swap',
 });
@@ -79,20 +79,18 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
+        {/* Preload the hero LCP image so browser discovers it early */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero-bg.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
+        {/* Inline theme script — runs before paint to prevent FOUC */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const isDark = localStorage.getItem('theme-storage')
-                  ? JSON.parse(localStorage.getItem('theme-storage')).state.isDark
-                  : true;
-                if (isDark) {
-                  document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
-                }
-              } catch (e) {}
-            `,
+            __html: `(function(){try{var s=localStorage.getItem('theme-storage');var d=s?JSON.parse(s).state.isDark:true;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
           }}
         />
       </head>
