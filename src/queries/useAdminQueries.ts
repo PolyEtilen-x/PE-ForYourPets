@@ -60,6 +60,16 @@ export interface AdminSubscriber {
   subscribedAt: string;
 }
 
+export interface SystemLog {
+  id: string;
+  source: 'FRONTEND' | 'BACKEND' | 'WEBHOOK';
+  message: string;
+  path?: string;
+  payload?: any;
+  stack?: string;
+  createdAt: string;
+}
+
 // 1. Dashboard Stats query
 export function useAdminDashboardQuery() {
   return useQuery<DashboardStats>({
@@ -102,6 +112,19 @@ export function useAdminNewslettersQuery() {
     queryKey: ['admin', 'newsletters'],
     queryFn: async () => {
       const res = await apiClient.get('/admin/newsletters');
+      return res.data;
+    },
+  });
+}
+
+// 5. System Logs query
+export function useAdminLogsQuery(page = 1, limit = 50) {
+  return useQuery<SystemLog[]>({
+    queryKey: ['admin', 'logs', page, limit],
+    queryFn: async () => {
+      const res = await apiClient.get('/admin/system-logs', {
+        params: { page, limit },
+      });
       return res.data;
     },
   });
