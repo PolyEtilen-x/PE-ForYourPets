@@ -20,7 +20,7 @@ const fraunces = Fraunces({
 
 const inter = Inter({
   subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-inter',
   display: 'swap',
 });
@@ -86,6 +86,8 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
             __html: `(function(){try{var s=localStorage.getItem('theme-storage');var d=s?JSON.parse(s).state.isDark:true;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
           }}
         />
+        {/* Preconnect to Vercel image optimizer for hero LCP */}
+        <link rel="preconnect" href="https://pe-for-your-pets.vercel.app" />
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
