@@ -169,6 +169,7 @@ export default function TensionSection() {
                   alt={card.alt}
                   fill
                   sizes="(max-width: 768px) 82vw, 480px"
+                  unoptimized={true}
                   className={styles.image}
                   loading="lazy"
                 />

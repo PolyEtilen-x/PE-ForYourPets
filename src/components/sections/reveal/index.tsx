@@ -58,6 +58,7 @@ export default function RevealSection() {
                   alt="PE Camera Left View"
                   fill
                   sizes="(max-width: 768px) 250px, 400px"
+                  unoptimized={true}
                   style={{ objectFit: 'contain', opacity: activeAngle === 'left' ? 1 : 0, transition: 'opacity 0.15s ease' }}
                   priority
                 />
@@ -66,6 +67,7 @@ export default function RevealSection() {
                   alt="PE Camera Front View"
                   fill
                   sizes="(max-width: 768px) 250px, 400px"
+                  unoptimized={true}
                   style={{ objectFit: 'contain', opacity: activeAngle === 'straight' ? 1 : 0, transition: 'opacity 0.15s ease' }}
                   priority
                 />
@@ -74,6 +76,7 @@ export default function RevealSection() {
                   alt="PE Camera Right View"
                   fill
                   sizes="(max-width: 768px) 250px, 400px"
+                  unoptimized={true}
                   style={{ objectFit: 'contain', opacity: activeAngle === 'right' ? 1 : 0, transition: 'opacity 0.15s ease' }}
                   priority
                 />
