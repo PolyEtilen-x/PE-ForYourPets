@@ -41,6 +41,28 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       default: 'PE - AI-Powered Cat Health Camera',
     },
     description: 'AI camera giám sát sức khỏe thú cưng 24/7. Biết sớm, yêu thương lâu dài.',
+    openGraph: {
+      title: 'PE - AI-Powered Cat Health Camera',
+      description: 'AI camera giám sát sức khỏe thú cưng 24/7. Biết sớm, yêu thương lâu dài.',
+      url: 'https://pe-for-your-pets.vercel.app',
+      siteName: 'PE-ForYourPets',
+      images: [
+        {
+          url: '/images/hero-bg.webp',
+          width: 1200,
+          height: 630,
+          alt: 'PE AI Camera for Pets',
+        },
+      ],
+      locale: locale,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'PE - AI-Powered Cat Health Camera',
+      description: 'AI camera giám sát sức khỏe thú cưng 24/7. Biết sớm, yêu thương lâu dài.',
+      images: ['/images/hero-bg.webp'],
+    },
     alternates: {
       canonical: `/${locale}`,
       languages: {
