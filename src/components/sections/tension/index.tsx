@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import ScrollReveal from '@/components/ui/scroll-reveal';
@@ -16,19 +16,137 @@ const TENSION_PHOTOS = [
 export default function TensionSection() {
   const t = useTranslations('tension');
 
-  // We have 4 cards configured in JSON messages
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const lastX = useRef(0);
+  const xOffset = useRef(0);
+
+  // Double the cards to create a seamless infinite loop marquee
   const cards = [0, 1, 2, 3].map((idx) => ({
     photo: TENSION_PHOTOS[idx],
     alt: t(`cards.${idx}.alt`),
     statement: t(`cards.${idx}.statement`),
     accent: t(`cards.${idx}.accent`),
     sub: t(`cards.${idx}.sub`),
-    // Use mint color for card 0, 2; orange for card 1, 3
     accentClass: idx % 2 === 1 ? styles.accentOrange : styles.accentMint,
   }));
-
-  // Double the cards to create a seamless infinite loop marquee
   const marqueeCards = [...cards, ...cards];
+
+  // 1. Marquee Animation Loop & Intersection Observer
+  useEffect(() => {
+    const container = containerRef.current;
+    const track = trackRef.current;
+    if (!container || !track) return;
+
+    let rafId: number;
+    let lastTime = performance.now();
+    let isVisible = false;
+
+    // Slower on mobile, slightly faster on desktop
+    const getSpeed = () => {
+      if (typeof window !== 'undefined' && window.innerWidth < 768) {
+        return 30; // Mobile: 30px/sec (slow & readable)
+      }
+      return 45; // Desktop: 45px/sec
+    };
+
+    const update = (time: number) => {
+      const delta = (time - lastTime) / 1000;
+      lastTime = time;
+
+      // Limit delta to prevent huge jumps on tab switch
+      const clampedDelta = Math.min(delta, 0.1);
+
+      if (isVisible && !isDragging.current) {
+        const halfWidth = track.scrollWidth / 2;
+        if (halfWidth > 0) {
+          xOffset.current -= getSpeed() * clampedDelta;
+          if (xOffset.current <= -halfWidth) {
+            xOffset.current += halfWidth;
+          }
+          track.style.transform = `translate3d(${xOffset.current}px, 0, 0)`;
+        }
+      }
+
+      rafId = requestAnimationFrame(update);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          lastTime = performance.now(); // reset timer to prevent jump
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(container);
+    rafId = requestAnimationFrame(update);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  // 2. Interactive Manual Drag/Swipe support
+  useEffect(() => {
+    const container = containerRef.current;
+    const track = trackRef.current;
+    if (!container || !track) return;
+
+    const onPointerDown = (e: PointerEvent) => {
+      // Only drag with left click or touch
+      if (e.button !== 0 && e.pointerType === 'mouse') return;
+      isDragging.current = true;
+      lastX.current = e.clientX;
+      container.setPointerCapture(e.pointerId);
+      container.style.cursor = 'grabbing';
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (!isDragging.current) return;
+      const dx = e.clientX - lastX.current;
+      lastX.current = e.clientX;
+
+      const halfWidth = track.scrollWidth / 2;
+      if (halfWidth > 0) {
+        xOffset.current += dx;
+        // Keep it looping infinitely during manual drag
+        if (xOffset.current <= -halfWidth) {
+          xOffset.current += halfWidth;
+        } else if (xOffset.current > 0) {
+          xOffset.current -= halfWidth;
+        }
+        track.style.transform = `translate3d(${xOffset.current}px, 0, 0)`;
+      }
+    };
+
+    const onPointerUp = (e: PointerEvent) => {
+      if (!isDragging.current) return;
+      isDragging.current = false;
+      container.style.cursor = '';
+      try {
+        container.releasePointerCapture(e.pointerId);
+      } catch {
+        // ignore
+      }
+    };
+
+    container.addEventListener('pointerdown', onPointerDown);
+    container.addEventListener('pointermove', onPointerMove, { passive: true });
+    container.addEventListener('pointerup', onPointerUp);
+    container.addEventListener('pointercancel', onPointerUp);
+
+    return () => {
+      container.removeEventListener('pointerdown', onPointerDown);
+      container.removeEventListener('pointermove', onPointerMove);
+      container.removeEventListener('pointerup', onPointerUp);
+      container.removeEventListener('pointercancel', onPointerUp);
+    };
+  }, []);
 
   return (
     <section id="features" className={styles.section}>
@@ -36,8 +154,8 @@ export default function TensionSection() {
         <p className={styles.label}>{t('sectionLabel')}</p>
       </ScrollReveal>
 
-      <div className={styles.marqueeContainer}>
-        <div className={styles.marqueeTrack}>
+      <div ref={containerRef} className={styles.marqueeContainer}>
+        <div ref={trackRef} className={styles.marqueeTrack}>
           {marqueeCards.map((card, i) => (
             <div key={i} className={styles.card}>
               {/* Image header */}
