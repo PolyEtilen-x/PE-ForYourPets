@@ -9,10 +9,14 @@ export default function CinematicVideoSection() {
     <section className={styles.section}>
       <ScrollReveal animation="revealUp" duration={1000}>
         <div className={styles.videoWrapper}>
-          <img
-            src="/videos/Video-Project.gif"
-            alt="PE AI Camera 360 Spin"
+          <video
+            src="/videos/Video-Project.mp4"
             className={styles.videoElement}
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-label="PE AI Camera 360 Spin"
           />
         </div>
       </ScrollReveal>

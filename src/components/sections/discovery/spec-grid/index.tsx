@@ -148,6 +148,7 @@ export default function SpecGrid() {
                 alt="PE Camera Product Full View"
                 fill
                 sizes="(max-width: 900px) 300px, 450px"
+                unoptimized={true}
                 style={{ objectFit: 'contain' }}
               />
             </div>
@@ -286,6 +287,7 @@ export default function SpecGrid() {
             alt="PE Camera Product Full View"
             fill
             sizes="300px"
+            unoptimized={true}
             style={{ objectFit: 'contain' }}
           />
         </div>
