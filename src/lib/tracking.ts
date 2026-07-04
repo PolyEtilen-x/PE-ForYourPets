@@ -11,16 +11,7 @@ export async function trackEvent(eventType: string, details: Record<string, unkn
   const timestamp = Date.now();
   const cameraId = 'PE-WEB-VISITOR';
 
-  // UI feedback text depending on language context
-  let message = `Đã gửi sự kiện [${eventType}] về Webhook thành công!`;
-  if (typeof window !== 'undefined' && window.location.pathname.startsWith('/en')) {
-    message = `Tracking event [${eventType}] sent successfully to Webhook!`;
-  }
-
-  // 1. Add visual alert to Zustand store so the user sees it in real-time
-  useTrackingStore.getState().addAlert(eventType, message);
-
-  // 2. Send payload to NestJS backend webhook with auth header
+  // 1. Send payload to NestJS backend webhook with auth header
   try {
     await apiClient.post(
       '/tracking/event',
@@ -39,7 +30,42 @@ export async function trackEvent(eventType: string, details: Record<string, unkn
         },
       }
     );
-  } catch (error) {
+
+    // If successfully saved on the server
+    if (process.env.NODE_ENV === 'development') {
+      let message = `Đã ghi nhận sự kiện [${eventType}] lên Webhook thành công!`;
+      if (typeof window !== 'undefined' && window.location.pathname.startsWith('/en')) {
+        message = `Tracking event [${eventType}] successfully recorded on Webhook!`;
+      }
+      useTrackingStore.getState().addAlert(eventType, message, 'success');
+    }
+  } catch (error: unknown) {
     console.error('Failed to send tracking event to webhook:', error);
+
+    // Extract validation error message from backend if available
+    const err = error as {
+      message?: string;
+      response?: {
+        data?: {
+          message?: string | string[];
+        };
+      };
+    };
+
+    let errorDetail = '';
+    if (err.response?.data?.message) {
+      const msg = err.response.data.message;
+      errorDetail = Array.isArray(msg) ? msg.join(', ') : msg;
+    } else {
+      errorDetail = err.message || 'Thất bại';
+    }
+
+    if (process.env.NODE_ENV === 'development') {
+      let message = `Lỗi Webhook [${eventType}]: ${errorDetail}`;
+      if (typeof window !== 'undefined' && window.location.pathname.startsWith('/en')) {
+        message = `Webhook error [${eventType}]: ${errorDetail}`;
+      }
+      useTrackingStore.getState().addAlert(eventType, message, 'error');
+    }
   }
 }

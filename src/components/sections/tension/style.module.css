@@ -32,30 +32,23 @@
   overflow: hidden;
   width: 100%;
   padding: 10px 0;
+  touch-action: pan-y;
+  /* Allow vertical page scroll, capture horizontal swipes */
+  user-select: none;
+  cursor: grab;
 }
 
 .marqueeTrack {
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: scrollContinuous 12s linear infinite;
-}
-
-/* BỎ hover pause — xóa .marqueeTrack:hover block */
-
-@keyframes scrollContinuous {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50% - 10px));
-  }
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 @media (min-width: 768px) {
   .marqueeTrack {
     gap: 24px;
-    animation-duration: 18s;
   }
 }
 
@@ -158,19 +151,24 @@
     font-size: 14px;
     letter-spacing: 0.35em;
   }
+
   .card {
     flex: 0 0 540px;
   }
+
   .imageWrapper {
     height: 330px;
   }
+
   .number {
     font-size: 13px;
   }
+
   .statement {
     font-size: 1.85rem;
     line-height: 1.35;
   }
+
   .subText {
     font-size: 15px;
     line-height: 1.65;

@@ -112,6 +112,7 @@
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -119,12 +120,34 @@
 }
 
 @keyframes pulseDotGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(0.85);
     opacity: 0.6;
   }
+
   50% {
     transform: scale(1.2);
     opacity: 1;
   }
+}
+
+.cardError {
+  border-color: rgba(229, 75, 75, 0.45);
+}
+
+.cardError .pulseWrapper {
+  background: rgba(229, 75, 75, 0.15);
+  color: #e54b4b;
+}
+
+.cardError .pulseDot {
+  background: #e54b4b;
+  box-shadow: 0 0 8px #e54b4b;
+}
+
+.cardError .eventLabel {
+  color: #e54b4b;
+  background: rgba(229, 75, 75, 0.15);
 }

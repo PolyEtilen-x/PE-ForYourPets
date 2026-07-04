@@ -19,12 +19,14 @@ export default function TrackingAlerts() {
 
 function AlertCard({ alert, onDismiss }: { alert: TrackingAlert; onDismiss: () => void }) {
   useEffect(() => {
-    const timer = setTimeout(onDismiss, 3500);
+    const timer = setTimeout(onDismiss, alert.type === 'error' ? 5000 : 3500);
     return () => clearTimeout(timer);
-  }, [onDismiss]);
+  }, [onDismiss, alert.type]);
+
+  const errorClass = alert.type === 'error' ? styles.cardError : '';
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${errorClass}`.trim()}>
       <div className={styles.pulseWrapper}>
         <Activity size={14} className={styles.icon} />
         <span className={styles.pulseDot} />
