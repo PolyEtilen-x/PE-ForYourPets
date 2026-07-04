@@ -72,7 +72,7 @@ export default function AdminOrdersPage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <div>
-          <h1 className={styles.title}>{t('orders.title')}</h1>
+          <h1 className={styles.title}>{t('admin.orders.title')}</h1>
           <p className={styles.subtitle}>
             {locale === 'vi' ? 'Duyệt đơn hàng và quản lý quy trình giao nhận.' : 'Review orders and manage delivery fulfillment.'}
           </p>
@@ -120,7 +120,7 @@ export default function AdminOrdersPage() {
                     >
                       {statusOptions.map((opt) => (
                         <option key={opt} value={opt}>
-                          {t(`orders.status.${opt}`)}
+                          {t(`admin.orders.status.${opt}`)}
                         </option>
                       ))}
                     </select>

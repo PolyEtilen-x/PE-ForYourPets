@@ -24,6 +24,42 @@
       "accent": "tín hiệu cảnh báo",
       "sub": "PE tự động giám sát giấc ngủ, phát hiện ngay khi giấc ngủ bị gián đoạn liên tục.",
       "alt": "Chú mèo nằm cuộn tròn ngủ dưới ánh đèn ấm áp"
+    },
+    {
+      "statement": "Chúng trốn vào góc tối nhất — bạn nghĩ chỉ là muốn ở một mình.",
+      "accent": "trốn vào góc tối nhất",
+      "sub": "Mèo khi đau thường tìm cách thu mình, ẩn náu hơn là biểu hiện rõ ràng sự khó chịu.",
+      "alt": "Một con mèo nép mình trong góc phòng tối"
+    },
+    {
+      "statement": "Tiếng gừ gừ đã ngừng — chẳng ai để ý từ khi nào.",
+      "accent": "Tiếng gừ gừ đã ngừng",
+      "sub": "Thay đổi trong thói quen phát âm có thể là một trong những tín hiệu thầm lặng sớm nhất.",
+      "alt": "Cận cảnh một con mèo im lặng với ánh mắt khó đoán"
+    },
+    {
+      "statement": "Ít chải lông hơn, lông rối nhiều hơn — bị nhầm thành lười biếng.",
+      "accent": "Ít chải lông hơn",
+      "sub": "PE phát hiện sự sụt giảm trong hành vi tự chăm sóc mà thường bị bỏ qua trong nhiều tuần.",
+      "alt": "Một con mèo với bộ lông hơi xù, nằm im"
+    },
+    {
+      "statement": "Chúng không còn nhảy lên chỗ ngồi yêu thích — và bạn chỉ nghĩ là hạ thấp đệm xuống thôi.",
+      "accent": "không còn nhảy lên",
+      "sub": "Khả năng vận động giảm thường bị nhầm là do tuổi già, chứ không phải vì đau đớn.",
+      "alt": "Một bậu cửa sổ trống nơi con mèo từng nằm"
+    },
+    {
+      "statement": "Bát nước không ai đụng tới suốt nhiều giờ — thói quen, hay dấu hiệu cảnh báo?",
+      "accent": "không ai đụng tới suốt nhiều giờ",
+      "sub": "PE theo dõi lượng nước uống để phát hiện những thay đổi nhỏ trước khi trở nên nghiêm trọng.",
+      "alt": "Một bát nước tĩnh lặng dưới ánh sáng buổi sớm"
+    },
+    {
+      "statement": "Khay cát kể một câu chuyện — hầu như không ai đọc được.",
+      "accent": "kể một câu chuyện",
+      "sub": "Thay đổi về tần suất hoặc hành vi quanh khay cát thường xuất hiện trước cả những triệu chứng rõ ràng.",
+      "alt": "Một khay cát vệ sinh trong góc nhà yên tĩnh, tối"
     }
   ]
 }

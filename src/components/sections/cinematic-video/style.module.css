@@ -1,0 +1,34 @@
+.section {
+  width: 100%;
+  background-color: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  overflow: hidden;
+  transition: background-color 0.35s;
+}
+
+:global(.dark) .section {
+  background-color: var(--bg-primary);
+}
+
+.videoWrapper {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.videoElement {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  /* Kỹ thuật làm mờ viền ảnh để blend liền mạch vào background */
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 40%, transparent 85%);
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 40%, transparent 85%);
+}

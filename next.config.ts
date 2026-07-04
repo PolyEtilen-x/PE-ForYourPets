@@ -23,6 +23,13 @@ const nextConfig: NextConfig = {
     imageSizes: [32, 64, 96, 128, 256],
     // Lower default quality — saves payload without visible quality loss
     minimumCacheTTL: 60 * 60 * 24 * 365,
+    qualities: [25, 50, 60, 75, 90, 100],
+    localPatterns: [
+      {
+        pathname: '/**',
+        search: '',
+      },
+    ],
   },
   // Cache static image assets aggressively
   async headers() {

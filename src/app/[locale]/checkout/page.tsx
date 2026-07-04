@@ -76,7 +76,9 @@ export default function CheckoutPage() {
   // If order was successfully placed, render Order Success View
   if (placedOrder) {
     const vndAmount = Math.round(placedOrder.total * 25000);
-    const qrUrl = `https://img.vietqr.io/image/MB-1234567890-compact2.jpg?amount=${vndAmount}&addInfo=PE%20ORDER%20${placedOrder.orderId}&accountName=PE%20TECH%20COMPANY`;
+    const sepayBank = "MBBank";
+    const sepayAccount = "9999999999"; // Thay bằng STK SePay thực tế
+    const qrUrl = `https://qr.sepay.vn/img?acc=${sepayAccount}&bank=${sepayBank}&amount=${vndAmount}&des=PE%20ORDER%20${placedOrder.orderId}`;
 
     return (
       <div className={styles.pageWrapper}>

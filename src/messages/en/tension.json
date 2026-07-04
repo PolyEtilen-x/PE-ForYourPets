@@ -24,6 +24,42 @@
       "accent": "warning indicators",
       "sub": "PE tracks sleep cycles, highlighting when rest is persistently disrupted.",
       "alt": "A cat sleeping curled up under warm light"
+    },
+    {
+      "statement": "They hide in the darkest corner — you think they just want alone time.",
+      "accent": "hide in the darkest corner",
+      "sub": "Cats in pain often seek isolation instead of showing obvious distress.",
+      "alt": "A cat tucked into a shadowy corner of a room"
+    },
+    {
+      "statement": "The purring stopped — nobody noticed when.",
+      "accent": "purring stopped",
+      "sub": "A change in vocal habits can be one of the earliest silent signals.",
+      "alt": "Close-up of a quiet cat with soft, unreadable eyes"
+    },
+    {
+      "statement": "Less grooming, more matting — mistaken for laziness.",
+      "accent": "less grooming",
+      "sub": "PE flags drops in self-care behavior that often go unnoticed for weeks.",
+      "alt": "A cat with slightly unkempt fur lying still"
+    },
+    {
+      "statement": "They stopped jumping to their favorite spot — and you just moved the cushion lower.",
+      "accent": "stopped jumping",
+      "sub": "Reduced mobility is frequently dismissed as aging, not discomfort.",
+      "alt": "An empty windowsill where a cat used to perch"
+    },
+    {
+      "statement": "Water bowl untouched for hours — routine, or a red flag?",
+      "accent": "untouched for hours",
+      "sub": "PE monitors hydration patterns to catch subtle shifts before they escalate.",
+      "alt": "A still water bowl in soft morning light"
+    },
+    {
+      "statement": "The litter box tells a story — most people never read it.",
+      "accent": "tells a story",
+      "sub": "Changes in frequency or behavior around the litter box often precede visible symptoms.",
+      "alt": "A litter box in a quiet, dim corner of a home"
     }
   ]
 }

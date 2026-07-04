@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { ProductCameraSvg as ProductCamera } from '@/components/ui/product-camera';
 import styles from './style.module.css';
 
 export default function SpecGrid() {
@@ -12,13 +12,13 @@ export default function SpecGrid() {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  
+
   // Dictionaries for dynamic mapping of refs preventing layout and index shifting
   const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
   const hotspotRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
-  // Load 5 spec groups (0: Camera, 1: Connectivity, 2: Dimensions, 3: Battery, 4: Lens)
-  const groups = [0, 1, 2, 3, 4].map((idx) => {
+  // Load 6 spec groups (0: Camera, 1: Connectivity, 2: Dimensions, 3: Battery, 4: Lens, 5: Pan/Tilt)
+  const groups = [0, 1, 2, 3, 4, 5].map((idx) => {
     const maxItems = idx === 0 ? 4 : 3;
     const items: string[] = [];
     for (let itemIdx = 0; itemIdx < maxItems; itemIdx++) {
@@ -34,7 +34,7 @@ export default function SpecGrid() {
   const updateLines = useCallback(() => {
     const svgEl = svgRef.current;
     if (!svgEl) return;
-    
+
     // Check if we are in desktop layout (checking container width or window size)
     const isDesktop = window.innerWidth >= 900;
     if (!isDesktop) {
@@ -44,7 +44,7 @@ export default function SpecGrid() {
 
     const svgRect = svgEl.getBoundingClientRect();
 
-    const newLines = [0, 1, 2, 3, 4].map((idx) => {
+    const newLines = [0, 1, 2, 3, 4, 5].map((idx) => {
       const cardEl = cardRefs.current[idx];
       const hotspotEl = hotspotRefs.current[idx];
 
@@ -142,7 +142,15 @@ export default function SpecGrid() {
         {/* Center column featuring product + hotspots */}
         <div className={styles.centerCol}>
           <div className={styles.cameraWrapper}>
-            <ProductCamera colorKey="sage" />
+            <div style={{ position: 'relative', width: '100%', height: '100%', transform: 'scale(1.2)' }}>
+              <Image
+                src="/images/pe-fullcam.png"
+                alt="PE Camera Product Full View"
+                fill
+                sizes="(max-width: 900px) 300px, 450px"
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
 
             {/* Glowing active glow ring inside camera */}
             {activeCategory !== null && (
@@ -153,22 +161,30 @@ export default function SpecGrid() {
                     activeCategory === 0
                       ? '25%'
                       : activeCategory === 1
-                      ? '45%'
-                      : activeCategory === 2
-                      ? '70%'
-                      : activeCategory === 3
-                      ? '85%'
-                      : '50%',
+                        ? '45%'
+                        : activeCategory === 2
+                          ? '70%'
+                          : activeCategory === 3
+                            ? '85%'
+                            : activeCategory === 4
+                              ? '32%'
+                              : activeCategory === 5
+                                ? '40%'
+                                : '50%',
                   left:
                     activeCategory === 0
                       ? '50%'
                       : activeCategory === 1
-                      ? '65%'
-                      : activeCategory === 2
-                      ? '32%'
-                      : activeCategory === 3
-                      ? '50%'
-                      : '50%',
+                        ? '65%'
+                        : activeCategory === 2
+                          ? '32%'
+                          : activeCategory === 3
+                            ? '50%'
+                            : activeCategory === 4
+                              ? '46%'
+                              : activeCategory === 5
+                                ? '80%'
+                                : '50%',
                 }}
               />
             )}
@@ -205,8 +221,15 @@ export default function SpecGrid() {
             <div
               ref={(el) => { hotspotRefs.current[4] = el; }}
               className={`${styles.hotspot} ${activeCategory === 4 ? styles.activeHotspot : ''}`}
-              style={{ top: '50%', left: '50%' }}
+              style={{ top: '32%', left: '46%' }}
               onMouseEnter={() => setActiveCategory(4)}
+              onMouseLeave={() => setActiveCategory(null)}
+            />
+            <div
+              ref={(el) => { hotspotRefs.current[5] = el; }}
+              className={`${styles.hotspot} ${activeCategory === 5 ? styles.activeHotspot : ''}`}
+              style={{ top: '40%', left: '80%' }}
+              onMouseEnter={() => setActiveCategory(5)}
               onMouseLeave={() => setActiveCategory(null)}
             />
           </div>
@@ -214,7 +237,7 @@ export default function SpecGrid() {
 
         {/* Right column categories (Connectivity & Battery) */}
         <div className={styles.rightCol}>
-          {[groups[1], groups[3]].map((group) => {
+          {[groups[1], groups[5], groups[3]].map((group) => {
             const idx = group.id;
             const isActive = activeCategory === idx;
             return (
@@ -257,8 +280,14 @@ export default function SpecGrid() {
 
       {/* Mobile & Tablet Showcase (Clean Stack Accordion) */}
       <div className={styles.mobileShowcase}>
-        <div className={styles.mobileCameraBox}>
-          <ProductCamera colorKey="sage" />
+        <div className={styles.mobileCameraBox} style={{ position: 'relative', height: '280px', transform: 'scale(1.1)' }}>
+          <Image
+            src="/images/pe-fullcam.png"
+            alt="PE Camera Product Full View"
+            fill
+            sizes="300px"
+            style={{ objectFit: 'contain' }}
+          />
         </div>
         <div className={styles.mobileAccordion}>
           {groups.map((group) => {

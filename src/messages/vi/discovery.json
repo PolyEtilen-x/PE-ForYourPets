@@ -67,6 +67,14 @@
           "Khẩu độ F/2.0 tối ưu thu sáng",
           "Chống ngược sáng WDR tự động"
         ]
+      },
+      {
+        "name": "Khớp xoay 360°",
+        "items": [
+          "Động cơ bước tĩnh âm",
+          "Theo dõi chuyển động mượt mà",
+          "Tự động khóa góc quay"
+        ]
       }
     ]
   },

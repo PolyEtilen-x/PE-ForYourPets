@@ -1,14 +1,36 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useRef, useCallback } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { ProductCameraSvg as ProductCamera } from '@/components/ui/product-camera';
 import PulseLine from '@/components/ui/pulse-line';
 import ScrollReveal from '@/components/ui/scroll-reveal';
 import styles from './style.module.css';
 
 export default function RevealSection() {
   const t = useTranslations('reveal');
+
+  const [activeAngle, setActiveAngle] = useState<'left' | 'straight' | 'right'>('straight');
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const { left, width } = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - left;
+    const ratio = x / width;
+
+    if (ratio < 0.33) {
+      setActiveAngle('left');
+    } else if (ratio > 0.66) {
+      setActiveAngle('right');
+    } else {
+      setActiveAngle('straight');
+    }
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setActiveAngle('straight');
+  }, []);
 
   return (
     <section className={styles.section}>
@@ -21,11 +43,41 @@ export default function RevealSection() {
           <div className={styles.badge}>{t('badge')}</div>
         </ScrollReveal>
 
-        {/* Camera — float animation + scroll reveal (springPop) */}
+        {/* Camera — float animation + interactive angles */}
         <ScrollReveal animation="springPop" delay={150} duration={800}>
-          <div className={styles.cameraWrapper}>
+          <div
+            className={styles.cameraWrapper}
+            ref={containerRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
             <div className={styles.cameraFloat}>
-              <ProductCamera colorKey="sage" rotation={18} />
+              <div className={styles.imageSequence}>
+                <Image
+                  src="/images/pe-camera-left.png"
+                  alt="PE Camera Left View"
+                  fill
+                  sizes="(max-width: 768px) 250px, 400px"
+                  style={{ objectFit: 'contain', opacity: activeAngle === 'left' ? 1 : 0, transition: 'opacity 0.15s ease' }}
+                  priority
+                />
+                <Image
+                  src="/images/pe-camera-straight.png"
+                  alt="PE Camera Front View"
+                  fill
+                  sizes="(max-width: 768px) 250px, 400px"
+                  style={{ objectFit: 'contain', opacity: activeAngle === 'straight' ? 1 : 0, transition: 'opacity 0.15s ease' }}
+                  priority
+                />
+                <Image
+                  src="/images/pe-camera-right.png"
+                  alt="PE Camera Right View"
+                  fill
+                  sizes="(max-width: 768px) 250px, 400px"
+                  style={{ objectFit: 'contain', opacity: activeAngle === 'right' ? 1 : 0, transition: 'opacity 0.15s ease' }}
+                  priority
+                />
+              </div>
             </div>
           </div>
         </ScrollReveal>
