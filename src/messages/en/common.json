@@ -23,6 +23,7 @@
       "products": "Products",
       "orders": "Orders",
       "newsletters": "Subscribers",
+      "logs": "System Logs",
       "logout": "Logout"
     },
     "dashboard": {
@@ -89,6 +90,22 @@
         "actions": "Actions"
       },
       "deleteConfirm": "Are you sure you want to unsubscribe this email?"
+    },
+    "logs": {
+      "title": "System Error Logs",
+      "subtitle": "Track errors from Frontend, Backend, and Webhooks",
+      "table": {
+        "time": "Time",
+        "source": "Source",
+        "path": "Path",
+        "message": "Error Message",
+        "details": "Details"
+      },
+      "sourceFrontend": "FRONTEND",
+      "sourceBackend": "BACKEND",
+      "sourceWebhook": "WEBHOOK",
+      "viewPayload": "View Payload",
+      "noPayload": "Empty"
     }
   }
 }

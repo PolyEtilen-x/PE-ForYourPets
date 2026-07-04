@@ -23,6 +23,7 @@
       "products": "Sản phẩm",
       "orders": "Đơn hàng",
       "newsletters": "Người đăng ký",
+      "logs": "Nhật ký Lỗi",
       "logout": "Đăng xuất"
     },
     "dashboard": {
@@ -89,6 +90,22 @@
         "actions": "Thao tác"
       },
       "deleteConfirm": "Bạn có chắc chắn muốn hủy đăng ký email này?"
+    },
+    "logs": {
+      "title": "Lịch Sử Lỗi Hệ Thống",
+      "subtitle": "Theo dõi các lỗi phát sinh từ Frontend, Backend và Webhook",
+      "table": {
+        "time": "Thời gian",
+        "source": "Nguồn",
+        "path": "Đường dẫn",
+        "message": "Nội dung lỗi",
+        "details": "Chi tiết"
+      },
+      "sourceFrontend": "FRONTEND",
+      "sourceBackend": "BACKEND",
+      "sourceWebhook": "WEBHOOK",
+      "viewPayload": "Xem Payload",
+      "noPayload": "Trống"
     }
   }
 }

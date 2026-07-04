@@ -15,6 +15,7 @@ import {
   Menu,
   X,
   User,
+  Bug,
 } from 'lucide-react';
 import styles from './style.module.css';
 
@@ -88,6 +89,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       name: t('admin.sidebar.newsletters'),
       path: `/${locale}/admin/newsletters`,
       icon: <Mail size={18} />,
+    },
+    {
+      name: t('admin.sidebar.logs'),
+      path: `/${locale}/admin/logs`,
+      icon: <Bug size={18} />,
     },
   ];
 

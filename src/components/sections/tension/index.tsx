@@ -11,10 +11,10 @@ const TENSION_PHOTOS = [
   '/img_tension/2.avif',
   '/img_tension/3.avif',
   '/img_tension/4.avif',
-  '/img_tension/5.jpg',
-  '/img_tension/6.jpg',
-  '/img_tension/7.jpg',
-  '/img_tension/8.jpg',
+  '/img_tension/5.avif',
+  '/img_tension/6.avif',
+  '/img_tension/7.avif',
+  '/img_tension/8.avif',
 ];
 
 export default function TensionSection() {
