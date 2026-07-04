@@ -22,14 +22,17 @@ export default function HeroSection() {
   useEffect(() => {
     if (prefersReducedMotion()) return;
 
-    const updateParallax = () => {
-      const section = sectionRef.current;
-      const bg = bgRef.current;
-      if (!section || !bg) return;
+    const section = sectionRef.current;
+    if (!section) return;
 
-      const rect = section.getBoundingClientRect();
+    const updateParallax = () => {
+      const bg = bgRef.current;
+      if (!bg) return;
+
+      const scrollY = window.scrollY;
+      const sectionTop = section.offsetTop;
       const viewportH = window.innerHeight;
-      const progress = rect.top / viewportH;
+      const progress = (sectionTop - scrollY) / viewportH;
       const offset = Math.max(-80, Math.min(80, progress * viewportH * 0.35));
       bg.style.transform = `translateY(${offset}px) scale(1.1)`;
     };
@@ -58,7 +61,7 @@ export default function HeroSection() {
           fill
           priority
           sizes="100vw"
-          quality={75}
+          quality={60}
           className={styles.bgImage}
           fetchPriority="high"
         />
