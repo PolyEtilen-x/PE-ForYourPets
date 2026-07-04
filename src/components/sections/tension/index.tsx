@@ -7,10 +7,14 @@ import ScrollReveal from '@/components/ui/scroll-reveal';
 import styles from './style.module.css';
 
 const TENSION_PHOTOS = [
-  'https://images.unsplash.com/photo-1768075355505-218cbb2e6a57?w=800&h=700&fit=crop&auto=format&q=80',
-  'https://images.unsplash.com/photo-1759687134869-d6d858a866ea?w=800&h=700&fit=crop&auto=format&q=80',
-  'https://images.unsplash.com/photo-1768670449312-dbc58f191cd1?w=800&h=700&fit=crop&auto=format&q=80',
-  'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&h=700&fit=crop&auto=format&q=80',
+  '/img_tension/1.avif',
+  '/img_tension/2.avif',
+  '/img_tension/3.avif',
+  '/img_tension/4.avif',
+  '/img_tension/5.jpg',
+  '/img_tension/6.jpg',
+  '/img_tension/7.jpg',
+  '/img_tension/8.jpg',
 ];
 
 export default function TensionSection() {
@@ -22,9 +26,9 @@ export default function TensionSection() {
   const lastX = useRef(0);
   const xOffset = useRef(0);
 
-  // Double the cards to create a seamless infinite loop marquee
-  const cards = [0, 1, 2, 3].map((idx) => ({
-    photo: TENSION_PHOTOS[idx],
+  // Map 10 text items from translation file, cycling through the 8 photos
+  const cards = Array.from({ length: 10 }).map((_, idx) => ({
+    photo: TENSION_PHOTOS[idx % 8],
     alt: t(`cards.${idx}.alt`),
     statement: t(`cards.${idx}.statement`),
     accent: t(`cards.${idx}.accent`),
@@ -46,9 +50,9 @@ export default function TensionSection() {
     // Slower on mobile, slightly faster on desktop
     const getSpeed = () => {
       if (typeof window !== 'undefined' && window.innerWidth < 768) {
-        return 30; // Mobile: 30px/sec (slow & readable)
+        return 30; // Mobile: 30px/sec
       }
-      return 45; // Desktop: 45px/sec
+      return 60; // Desktop: 60px/sec
     };
 
     const update = (time: number) => {
@@ -169,7 +173,7 @@ export default function TensionSection() {
                   loading="lazy"
                 />
                 <div className={styles.imageOverlay} />
-                <span className={styles.number}>/ 0{(i % 4) + 1}</span>
+                <span className={styles.number}>/ {(i % 10) + 1 < 10 ? '0' : ''}{(i % 10) + 1}</span>
               </div>
 
               {/* Text details */}

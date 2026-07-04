@@ -4,6 +4,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import NavBar from '@/components/sections/navbar';
 import HeroSection from '@/components/sections/hero';
 import TensionSection from '@/components/sections/tension';
+import CinematicVideoSection from '@/components/sections/cinematic-video';
 import RevealSection from '@/components/sections/reveal';
 import DiscoverySection from '@/components/sections/discovery';
 import ShopSection from '@/components/sections/shop';
@@ -37,6 +38,7 @@ export default async function Home({ params }: HomeProps) {
       <main style={{ width: '100%' }}>
         <HeroSection />
         <TensionSection />
+        <CinematicVideoSection />
         <RevealSection />
         <DiscoverySection />
         <ShopSection />

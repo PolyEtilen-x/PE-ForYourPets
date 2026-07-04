@@ -29,23 +29,52 @@
     "groups": [
       {
         "name": "Camera & AI",
-        "items": ["130° wide-angle view", "AI behavior recognition", "Automatic anomaly detection", "IR Night Vision"]
+        "items": [
+          "130° wide-angle view",
+          "AI behavior recognition",
+          "Automatic anomaly detection",
+          "IR Night Vision"
+        ]
       },
       {
         "name": "Connectivity",
-        "items": ["Wi-Fi 2.4 / 5 GHz", "Bluetooth 5.0 LE", "iOS & Android Companion App"]
+        "items": [
+          "Wi-Fi 2.4 / 5 GHz",
+          "Bluetooth 5.0 LE",
+          "iOS & Android Companion App"
+        ]
       },
       {
         "name": "Dimensions",
-        "items": ["Ø 82mm × H 95mm", "Desk placement or wall mount", "Hidden bottom USB-C cable"]
+        "items": [
+          "Ø 82mm × H 95mm",
+          "Desk placement or wall mount",
+          "Hidden bottom USB-C cable"
+        ]
       },
       {
         "name": "Battery",
-        "items": ["3200 mAh built-in battery", "~7 days / charge", "10W Qi Wireless charging"]
+        "items": [
+          "3200 mAh built-in battery",
+          "~7 days / charge",
+          "10W Qi Wireless charging"
+        ]
       },
       {
         "name": "Lens & Resolution",
-        "items": ["4MP 2K Ultra-HD Resolution", "F/2.0 aperture for low-light", "Automatic WDR contrast balance"]
+        "items": [
+          "4MP 2K Ultra-HD Resolution",
+          "F/2.0 aperture for low-light",
+          "Automatic WDR contrast balance"
+        ]
+      },
+      {
+        "name": "360° Pan/Tilt",
+        "items": [
+          "Silent stepper motor",
+          "Smooth motion tracking",
+          "Auto-lock viewing angle"
+        ]
       }
     ]
   },

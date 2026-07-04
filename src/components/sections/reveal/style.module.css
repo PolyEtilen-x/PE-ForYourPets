@@ -63,6 +63,13 @@
   will-change: transform;
 }
 
+.imageSequence {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: ew-resize;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cameraFloat {
     animation: none;

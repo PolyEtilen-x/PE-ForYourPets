@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
+import Script from 'next/script';
 import Providers from './providers';
 import TrackingAlerts from '@/components/ui/tracking-alerts';
 import '@/styles/tokens.css';
@@ -100,10 +101,13 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     <html
       lang={locale}
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
     >
       <head>
         {/* Inline theme script — runs before paint to prevent FOUC */}
-        <script
+        <Script
+          id="theme-script"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var s=localStorage.getItem('theme-storage');var d=s?JSON.parse(s).state.isDark:true;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
           }}

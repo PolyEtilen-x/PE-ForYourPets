@@ -62,6 +62,12 @@ export default function NavBar() {
         <span className={styles.logo}>PE - For Your Pets</span>
       </Link>
 
+      <div
+        className={`${styles.backdrop} ${mobileMenuOpen ? styles.backdropVisible : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
+
       <div className={`${styles.menu} ${mobileMenuOpen ? styles.mobileOpen : ''}`}>
         <div className={styles.links}>
           <a href="#features" onClick={() => setMobileMenuOpen(false)}>
